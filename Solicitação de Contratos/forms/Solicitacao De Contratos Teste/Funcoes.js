@@ -2119,33 +2119,59 @@ function visualizarManualForaPadrao() {
 
 // Lista de Documentos na pasta do Contrato
 async function buscaPastaDeContratosDaObra() {
-    const codigoObra = $("#codigoObra").val();
+    try {
+        const codigoObra = $("#codigoObra").val();
 
-    const regional = buscaRegionalPeloCodigoDaObra(codigoObra);
-    const idsPastasRegionais = {
-        HOMOLOGACAO: 13697, 
-        PRODUCAO: 49
-    };
+        const regional = buscaRegionalPeloCodigoDaObra(codigoObra);
+        const idsPastasRegionais = {
+            HOMOLOGACAO: 13697,
+            PRODUCAO: 49
+        };
 
-    const idPastaRegionais = idsPastasRegionais[getEnviroment()];
+        const idPastaRegionais = idsPastasRegionais[getEnviroment()];
 
 
-    const regionais = await buscaDocumentosDaPasta(idPastaRegionais);
-    var idPastaRegional = regionais.find(e => e.documentDescription.toUpperCase() == regional).documentId;
+        const regionais = await buscaDocumentosDaPasta(idPastaRegionais);
+        var idPastaRegional = regionais.find(e => e.documentDescription.toUpperCase() == regional);
+        if (!idPastaRegional) {
+            throw "Pasta da Regional (" + regional + ") não encontrada!";
+        }
 
-    var obras = await buscaDocumentosDaPasta(idPastaRegional);
-    var idPastaObra = obras.find(obra => obra.documentDescription.substring(0, 7) == codigoObra).documentId;
+        var obras = await buscaDocumentosDaPasta(idPastaRegional.documentId);
+        var idPastaObra = obras.find(obra => obra.documentDescription.substring(0, 7) == codigoObra);
+        if (!idPastaObra) {
+            throw "Pasta da Obra (" + codigoObra + ") não encontrada!";
+        }
 
-    var pastasDaObra = await buscaDocumentosDaPasta(idPastaObra);
-    var idPastaAcompanhamento = pastasDaObra.find(e => e.documentDescription == "Acompanhamento e Planejamento da Obra").documentId;
+        var pastasDaObra = await buscaDocumentosDaPasta(idPastaObra.documentId);
+        var idPastaAcompanhamento = pastasDaObra.find(e => e.documentDescription == "Acompanhamento e Planejamento da Obra");
+        if (!idPastaAcompanhamento) {
+            throw "Pasta (Acompanhamento e Planejamento da Obra) não encontrada!";
+        }
 
-    var pastasAcompanhamento = await buscaDocumentosDaPasta(idPastaAcompanhamento);
-    var idPastaContratos = pastasAcompanhamento.find(e => e.documentDescription == "Contratos").documentId;
+        var pastasAcompanhamento = await buscaDocumentosDaPasta(idPastaAcompanhamento.documentId);
+        var idPastaContratos = pastasAcompanhamento.find(e => e.documentDescription == "Contratos");
+        if (!idPastaContratos) {
+            throw "Pasta (Contratos) não encontrada!";
+        }
 
-    var pastasContratos = await buscaDocumentosDaPasta(idPastaContratos);
-    var idPastaContratosObras = pastasContratos.find(e => e.documentDescription == "Contratos Obras").documentId;
+        var pastasContratos = await buscaDocumentosDaPasta(idPastaContratos.documentId);
+        var idPastaContratosObras = pastasContratos.find(e => e.documentDescription == "Contratos Obras");
+        if (!idPastaContratosObras) {
+            throw "Pasta (Contratos Obras) não encontrada!";
+        }
 
-    return idPastaContratosObras;
+        return idPastaContratosObras.documentId;
+
+    } catch (error) {
+        FLUIGC.toast({
+            title: "Erro ao Buscar Documentos do Contrato",
+            message: error,
+            type: "warning"
+        });
+        throw error;
+    }
+
     function buscaRegionalPeloCodigoDaObra(codigoObra) {
         const codigosRegionais = {
             1.2: "OBRAS REGIONAL SUL",
@@ -2154,7 +2180,12 @@ async function buscaPastaDeContratosDaObra() {
             1.5: "OBRAS REGIONAL NORDESTE",
             1.6: "OBRAS REGIONAL CENTRO OESTE",
         }
-        return codigosRegionais[codigoObra.substring(0, 3)];
+        var regional = codigosRegionais[codigoObra.substring(0, 3)];
+        if (regional) {
+            return regional;
+        } else {
+            throw "Regional da Obra (" + codigoObra + ") não encontrada!";
+        }
     }
 }
 function buscaDocumentosDaPasta(documentId) {
@@ -2174,18 +2205,22 @@ function buscaDocumentosDaPasta(documentId) {
 
 }
 async function buscaDocumentosDoContrato() {
-    const codigoContrato = $("#CodigoContrato").val().split(" - ")[0].replace("/", "_");
-    const codigoContrato2 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "-");
-    var pastaContrato = listContratosPasta.find(e => {
-        return e.documentDescription.substring(0, 14).trim() == codigoContrato.trim() || e.documentDescription.substring(0, 14).trim() == codigoContrato2.trim()
-    }).documentId;
-    var documentos = await buscaDocumentosDaPasta(pastaContrato);
-    geraModalDocumentos(documentos);
+    try {
+        const codigoContrato = $("#CodigoContrato").val().split(" - ")[0].replace("/", "_");
+        const codigoContrato2 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "-");
+        var pastaContrato = listContratosPasta.find(e => {
+            return e.documentDescription.substring(0, 14).trim() == codigoContrato.trim() || e.documentDescription.substring(0, 14).trim() == codigoContrato2.trim()
+        });
+        if (!pastaContrato) {
+            throw "Pasta do Contrato (" + codigoContrato + ") não encontrada!";
+        }
+        var documentos = await buscaDocumentosDaPasta(pastaContrato.documentId);
+        geraModalDocumentos(documentos);
 
-    function geraModalDocumentos(documentos) {
-        var htmlLinhas = geraHtmlLinhas(documentos);
-        var html =
-            `<table class="table table-bordered">
+        function geraModalDocumentos(documentos) {
+            var htmlLinhas = geraHtmlLinhas(documentos);
+            var html =
+                `<table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -2198,49 +2233,59 @@ async function buscaDocumentosDoContrato() {
                 </tbody>
             </table>`;
 
-        var myModal = FLUIGC.modal({
-            title: 'Documentos',
-            content: html,
-            id: 'fluig-modal',
-            size: 'full',
-            actions: [{
-                'label': 'Fechar',
-                'autoClose': true
-            }]
-        }, function (err, data) {
-            if (err) {
-                // do error handling
-            } else {
-                // do something with data
-            }
-        });
+            var myModal = FLUIGC.modal({
+                title: 'Documentos',
+                content: html,
+                id: 'fluig-modal',
+                size: 'full',
+                actions: [{
+                    'label': 'Fechar',
+                    'autoClose': true
+                }]
+            }, function (err, data) {
+                if (err) {
+                    // do error handling
+                } else {
+                    // do something with data
+                }
+            });
 
-        function geraHtmlLinhas(documentos) {
-            var html = "";
+            function geraHtmlLinhas(documentos) {
+                var html = "";
 
-            for (const documento of documentos) {
-                var dataCriacao = new Date(documento.createDate);
-                var dia = dataCriacao.getDate();
-                dia = dia < 10 ? "0" + dia : dia;
-                var mes = dataCriacao.getMonth() + 1;
-                mes = mes < 10 ? "0" + mes : mes;
-                var ano = dataCriacao.getFullYear();
+                for (const documento of documentos) {
+                    var dataCriacao = new Date(documento.createDate);
+                    var dia = dataCriacao.getDate();
+                    dia = dia < 10 ? "0" + dia : dia;
+                    var mes = dataCriacao.getMonth() + 1;
+                    mes = mes < 10 ? "0" + mes : mes;
+                    var ano = dataCriacao.getFullYear();
 
-                html +=
-                    `<tr>
+                    html +=
+                        `<tr>
                         <td><a href="${documento.fileUrl}" target="_blank">${documento.documentDescription}</a></td>
                         <td>${dia + "/" + mes + "/" + ano}</td>
                         <td style="text-align:center;"><a class="btn btn-primary" download="${documento.documentDescription}" href="${documento.fileUrl}">Download</a></td>
                     </tr>`
+                }
+                return html;
             }
-            return html;
         }
+    } catch (error) {
+        FLUIGC.toast({
+            title:"Erro ao buscar documentos do Contrato: ",
+            message:error,
+            type:"warning"
+        })
+        throw error;
     }
 }
-var idPastaDeContratos = null; 
-var listContratosPasta = null; 
+
+var idPastaDeContratos = null;
+var listContratosPasta = null;
 
 setTimeout(async () => {
+    // Busca pasta de Contratos da Obra para buscar os Documentos pros Aditivos e Rescisões
     idPastaDeContratos = await buscaPastaDeContratosDaObra();
     listContratosPasta = await buscaDocumentosDaPasta(idPastaDeContratos);
 }, 1000);
