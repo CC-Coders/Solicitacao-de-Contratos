@@ -471,7 +471,7 @@ function CriaDocFluig(idInput, i = 0) {
         var p4 = DatasetFactory.createConstraint("nome", fileName, fileName, ConstraintType.SHOULD);
         var p5 = DatasetFactory.createConstraint("descricao", fileName, fileName, ConstraintType.SHOULD);
         var p6 = DatasetFactory.createConstraint("pasta", 140518, 140518, ConstraintType.SHOULD); //Prod
-        //var p6 = DatasetFactory.createConstraint("pasta", 17926, 17926, ConstraintType.SHOULD); //Homolog
+        // var p6 = DatasetFactory.createConstraint("pasta", 17926, 17926, ConstraintType.SHOULD); //Homolog
 
         DatasetFactory.getDataset("CriacaoDocumentosFluig", null, [p1, p2, p3, p4, p5, p6], null, callback);
     };
@@ -2112,4 +2112,152 @@ function visualizarManualForaPadrao() {
             },
         })
     })
+}
+
+
+
+
+// Lista de Documentos na pasta do Contrato
+async function buscaPastaDeContratosDaObra() {
+    const codigoObra = $("#codigoObra").val();
+
+    const regional = buscaRegionalPeloCodigoDaObra(codigoObra);
+    const idsPastasRegionais = {
+        HOMOLOGACAO: 13697, 
+        PRODUCAO: 49
+    };
+
+    const idPastaRegionais = idsPastasRegionais[getEnviroment()];
+
+
+    const regionais = await buscaDocumentosDaPasta(idPastaRegionais);
+    var idPastaRegional = regionais.find(e => e.documentDescription.toUpperCase() == regional).documentId;
+
+    var obras = await buscaDocumentosDaPasta(idPastaRegional);
+    var idPastaObra = obras.find(obra => obra.documentDescription.substring(0, 7) == codigoObra).documentId;
+
+    var pastasDaObra = await buscaDocumentosDaPasta(idPastaObra);
+    var idPastaAcompanhamento = pastasDaObra.find(e => e.documentDescription == "Acompanhamento e Planejamento da Obra").documentId;
+
+    var pastasAcompanhamento = await buscaDocumentosDaPasta(idPastaAcompanhamento);
+    var idPastaContratos = pastasAcompanhamento.find(e => e.documentDescription == "Contratos").documentId;
+
+    var pastasContratos = await buscaDocumentosDaPasta(idPastaContratos);
+    var idPastaContratosObras = pastasContratos.find(e => e.documentDescription == "Contratos Obras").documentId;
+
+    return idPastaContratosObras;
+    function buscaRegionalPeloCodigoDaObra(codigoObra) {
+        const codigosRegionais = {
+            1.2: "OBRAS REGIONAL SUL",
+            1.3: "OBRAS REGIONAL NORTE",
+            1.4: "OBRAS REGIONAL SUDESTE",
+            1.5: "OBRAS REGIONAL NORDESTE",
+            1.6: "OBRAS REGIONAL CENTRO OESTE",
+        }
+        return codigosRegionais[codigoObra.substring(0, 3)];
+    }
+}
+function buscaDocumentosDaPasta(documentId) {
+    return new Promise((resolve, reject) => {
+        var url = parent.WCMAPI.serverURL + `/content-management/api/v2/folders/${documentId}/documents?order=documentDescription&page=1&pageSize=1000`;
+        $.ajax({
+            url: url,
+            method: "GET",
+            success: result => {
+                resolve(result.invdata);
+            },
+            error: e => {
+                reject(e);
+            }
+        });
+    });
+
+}
+async function buscaDocumentosDoContrato() {
+    const codigoContrato = $("#CodigoContrato").val().split(" - ")[0].replace("/", "_");
+    const codigoContrato2 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "-");
+    var pastaContrato = listContratosPasta.find(e => {
+        return e.documentDescription.substring(0, 14).trim() == codigoContrato.trim() || e.documentDescription.substring(0, 14).trim() == codigoContrato2.trim()
+    }).documentId;
+    var documentos = await buscaDocumentosDaPasta(pastaContrato);
+    geraModalDocumentos(documentos);
+
+    function geraModalDocumentos(documentos) {
+        var htmlLinhas = geraHtmlLinhas(documentos);
+        var html =
+            `<table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Data</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${htmlLinhas}
+                </tbody>
+            </table>`;
+
+        var myModal = FLUIGC.modal({
+            title: 'Documentos',
+            content: html,
+            id: 'fluig-modal',
+            size: 'full',
+            actions: [{
+                'label': 'Fechar',
+                'autoClose': true
+            }]
+        }, function (err, data) {
+            if (err) {
+                // do error handling
+            } else {
+                // do something with data
+            }
+        });
+
+        function geraHtmlLinhas(documentos) {
+            var html = "";
+
+            for (const documento of documentos) {
+                var dataCriacao = new Date(documento.createDate);
+                var dia = dataCriacao.getDate();
+                dia = dia < 10 ? "0" + dia : dia;
+                var mes = dataCriacao.getMonth() + 1;
+                mes = mes < 10 ? "0" + mes : mes;
+                var ano = dataCriacao.getFullYear();
+
+                html +=
+                    `<tr>
+                        <td><a href="${documento.fileUrl}" target="_blank">${documento.documentDescription}</a></td>
+                        <td>${dia + "/" + mes + "/" + ano}</td>
+                        <td><button class="btn btn-primary">Download</button></td>
+                    </tr>`
+            }
+            return html;
+        }
+    }
+}
+var idPastaDeContratos = null; 
+var listContratosPasta = null; 
+
+setTimeout(async () => {
+    idPastaDeContratos = await buscaPastaDeContratosDaObra();
+    listContratosPasta = await buscaDocumentosDaPasta(idPastaDeContratos);
+}, 1000);
+
+
+
+
+// Utils
+function getEnviroment(){
+    var url = parent.WCMAPI.getServerURL();
+    if (url == 'http://fluig.castilho.com.br:1010') {
+        return "PRODUCAO";
+    }
+    else if (url == 'http://homologacao.castilho.com.br:2020') {
+        return "HOMOLOGACAO";
+    }
+    else{
+        return "HOMOLOGACAO";
+    }
 }

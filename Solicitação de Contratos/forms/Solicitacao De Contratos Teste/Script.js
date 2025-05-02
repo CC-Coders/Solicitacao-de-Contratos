@@ -126,10 +126,10 @@ $(document).ready(function () {
                     if (values.TIPOCONTRATO == "Prestação de Serviços" || values.TIPOCONTRATO == "Prestação de Serviços - Sub-Empreiteiros" || values.TIPOCONTRATO == "Prestação de Serviços - Vigilância" || values.TIPOCONTRATO == "Prestação de Serviços - Sub/Retenção") {
                         if ($(this).hasClass("checkboxSelecionaAditivo")) {
                             $("#tpCont").val(4);
-                            //visualizarContrato(22847).then(() => {//Homolog
+                            visualizarContrato(22847).then(() => {//Homolog
                             // visualizarContrato(514783).then(() => {//Prod
                             // visualizarContrato(5785).then(() => {//Develop
-                            visualizarContrato(973993).then(() => {//Prod Novo Modelo
+                            // visualizarContrato(973993).then(() => {//Prod Novo Modelo
                                 $("#divOpcoesContrato").show();
                                 $(".divOptAditivoPretacaoServicos").show();
                             });
@@ -435,8 +435,12 @@ $(document).ready(function () {
                         " + values.STATUS + "\
                         <br><br>\
                     </div>\
+                </div>\
+                <div style='text-align:center;'>\
+                    <button class='btn btn-primary' id='btnAbrirDocumentos'>Abrir Documentos</button>\
                 </div>";
             $("#divContratoPrincipal2").find(".panel-body").append(div);
+            $("#btnAbrirDocumentos").on("click",buscaDocumentosDoContrato);
             ValidaTerminoTabContratoPrincipal(true);
             $("#divContratoPrincipal").hide();
             gerarContrato();
@@ -493,8 +497,12 @@ $(document).ready(function () {
                         " + values.STATUS + "\
                         <br><br>\
                     </div>\
+                </div>\
+                <div style='text-align:center;'>\
+                    <button class='btn btn-primary' id='btnAbrirDocumentos'>Abrir Documentos</button>\
                 </div>";
             $("#divContratoPrincipal2").find(".panel-body").append(div);
+            $("#btnAbrirDocumentos").on("click",buscaDocumentosDoContrato);
             ValidaTerminoTabContratoPrincipal(true);
             $("#divContratoPrincipal").hide();
             gerarContrato();
