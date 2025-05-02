@@ -2188,9 +2188,9 @@ async function buscaDocumentosDoContrato() {
             `<table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td>Nome</td>
-                        <td>Data</td>
-                        <td></td>
+                        <th>Nome</th>
+                        <th>Data</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
