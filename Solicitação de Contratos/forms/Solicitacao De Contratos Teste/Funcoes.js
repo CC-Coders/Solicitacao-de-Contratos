@@ -2285,10 +2285,10 @@ var idPastaDeContratos = null;
 var listContratosPasta = null;
 
 setTimeout(async () => {
-    // Busca pasta de Contratos da Obra para buscar os Documentos pros Aditivos e Rescisões
+    // Busca previamente a pasta de Contratos da Obra, para otimizar a busca dos Documentos pros Aditivos e Rescisões
     idPastaDeContratos = await buscaPastaDeContratosDaObra();
     listContratosPasta = await buscaDocumentosDaPasta(idPastaDeContratos);
-}, 1000);
+}, 500);
 
 
 
