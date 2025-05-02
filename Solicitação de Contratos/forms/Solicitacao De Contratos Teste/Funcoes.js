@@ -2284,11 +2284,15 @@ async function buscaDocumentosDoContrato() {
 var idPastaDeContratos = null;
 var listContratosPasta = null;
 
-setTimeout(async () => {
-    // Busca previamente a pasta de Contratos da Obra, para otimizar a busca dos Documentos pros Aditivos e Rescisões
-    idPastaDeContratos = await buscaPastaDeContratosDaObra();
-    listContratosPasta = await buscaDocumentosDaPasta(idPastaDeContratos);
-}, 500);
+if ($("tpCont").val() == "3" || $("tpCont").val() == "4") {
+    //Caso o tipo da Solicitação seja Aditivo ou Rescisão, busca a Pasta de Documento do Contrato Principal
+    setTimeout(async () => {
+        // Busca previamente a pasta de Contratos da Obra, para otimizar a busca dos Documentos pros Aditivos e Rescisões
+        idPastaDeContratos = await buscaPastaDeContratosDaObra();
+        listContratosPasta = await buscaDocumentosDaPasta(idPastaDeContratos);
+    }, 500);    
+}
+
 
 
 
