@@ -2230,7 +2230,7 @@ async function buscaDocumentosDoContrato() {
                     `<tr>
                         <td><a href="${documento.fileUrl}" target="_blank">${documento.documentDescription}</a></td>
                         <td>${dia + "/" + mes + "/" + ano}</td>
-                        <td><button class="btn btn-primary">Download</button></td>
+                        <td style="text-align:center;"><a class="btn btn-primary" download="${documento.documentDescription}" href="${documento.fileUrl}">Download</a></td>
                     </tr>`
             }
             return html;
