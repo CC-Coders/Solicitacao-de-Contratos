@@ -2226,6 +2226,9 @@ async function buscaDocumentosDoContrato() {
         const codigoContrato = $("#CodigoContrato").val().split(" - ")[0].trim();
         const codigoContrato2 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "_").trim();
         const codigoContrato3 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "-").trim();
+        if (!listContratosPasta) {
+            throw "Carregando documentos...";
+        }
         var pastaContrato = listContratosPasta.find(e => {
             return e.documentDescription.substring(0, 14).trim() == codigoContrato || e.documentDescription.substring(0, 14).trim() == codigoContrato2 || e.documentDescription.substring(0, 14).trim() == codigoContrato3;
         });
