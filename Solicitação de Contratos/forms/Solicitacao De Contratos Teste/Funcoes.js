@@ -2206,10 +2206,11 @@ function buscaDocumentosDaPasta(documentId) {
 }
 async function buscaDocumentosDoContrato() {
     try {
-        const codigoContrato = $("#CodigoContrato").val().split(" - ")[0].replace("/", "_");
-        const codigoContrato2 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "-");
+        const codigoContrato = $("#CodigoContrato").val().split(" - ")[0].trim();
+        const codigoContrato2 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "_").trim();
+        const codigoContrato3 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "-").trim();
         var pastaContrato = listContratosPasta.find(e => {
-            return e.documentDescription.substring(0, 14).trim() == codigoContrato.trim() || e.documentDescription.substring(0, 14).trim() == codigoContrato2.trim()
+            return e.documentDescription.substring(0, 14).trim() == codigoContrato || e.documentDescription.substring(0, 14).trim() == codigoContrato2 || e.documentDescription.substring(0, 14).trim() == codigoContrato3;
         });
         if (!pastaContrato) {
             throw "Pasta do Contrato (" + codigoContrato + ") não encontrada!";
@@ -2284,7 +2285,7 @@ async function buscaDocumentosDoContrato() {
 var idPastaDeContratos = null;
 var listContratosPasta = null;
 
-if ($("tpCont").val() == "3" || $("tpCont").val() == "4") {
+if ($("#tpCont").val() == "3" || $("#tpCont").val() == "4") {
     //Caso o tipo da Solicitação seja Aditivo ou Rescisão, busca a Pasta de Documento do Contrato Principal
     setTimeout(async () => {
         // Busca previamente a pasta de Contratos da Obra, para otimizar a busca dos Documentos pros Aditivos e Rescisões
