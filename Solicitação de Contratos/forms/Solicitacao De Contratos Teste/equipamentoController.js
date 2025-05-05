@@ -86,32 +86,66 @@ function CarregaListaEquipamentos() {
                             
                             $("#tbodyAditivo").append(html);
                         } else {
-                            var html =
-                            "<tr class='linhaEquipamento" + values.PREFIXO.replace(".", "") + "'>\
-                            <td class='tableTd'>" + values.PREFIXO + "</td>\
-                            <td class='tableTd'>" + values.DESCRICAO + "</td>\
-                            <td class='tableTd'>" + values.FABRICANTE + "</td>\
-                            <td class='tableTd'>" + values.MODELO + "</td>\
-                            <td class='tableTd'>" + values.ANO + "</td>\
-                            <td class='tableTd'>";
-                            if (values.PLACA != "") {
-                                html += values.PLACA;
-                            } else {
-                                html += values.CHASSIS;
-                            }
-                            html += "</td>\
-                                <td class='tableTd'>" + (values.POTENCIA ?? "") + "</td>\
-                                <td class='tableTd'>" + (values.CAPACIDADE ?? "") + "</td>\
-                                <td class='tableTd'>" + (values.UNIDADE ?? "") + "</td>\
+                            if(modeloContrato == "Locação de Equipamento" && $("#selectOptLocEquipamento").val() == 'Sem Mão de Obra'){
+                                var html =
+                                "<tr class='linhaEquipamento" + values.PREFIXO.replace(".", "") + "'>\
+                                <td class='tableTd'>" + values.PREFIXO + "</td>\
+                                <td class='tableTd'>" + values.DESCRICAO + "</td>\
+                                <td class='tableTd'>" + values.MODELO + "</td>\
+                                <td class='tableTd'>" + values.ANO + "</td>\
+                                <td class='tableTd'>" + values.PLACA + "</td>\
+                                <td class='tableTd'>" + values.CHASSI + "</td>\
+                                <td class='tableTd valorContrato'>";
+                                
+
+                                var valor = FormataValor(values.VALORLOCACAO)
+                                valor = valor.substring(3, valor.length)
+
+                                html += valor + "</td>\
+                                </tr>";
+                               
+                                $("#tbody").append(html);
+                                var totalContrato = 0;
+                                $(".valorContrato").each(function(e , i) {
+                                    var valorItem = $(i).text();
+                                    valorItem = valorItem.replaceAll(".", "");
+                                    valorItem = valorItem.replaceAll(",", ".");
+
+                                    totalContrato = totalContrato +  parseFloat(valorItem);
+                                });
+                                
+                                var valorTotal = FormataValor(totalContrato)
+                                valorTotal = valorTotal.substring(3, valorTotal.length)
+                                $("#valorContrato").val(valorTotal);
+                            }else{
+                                var html =
+                                "<tr class='linhaEquipamento" + values.PREFIXO.replace(".", "") + "'>\
+                                <td class='tableTd'>" + values.PREFIXO + "</td>\
+                                <td class='tableTd'>" + values.DESCRICAO + "</td>\
+                                <td class='tableTd'>" + values.FABRICANTE + "</td>\
+                                <td class='tableTd'>" + values.MODELO + "</td>\
+                                <td class='tableTd'>" + values.ANO + "</td>\
                                 <td class='tableTd'>";
+                                if (values.PLACA != "") {
+                                    html += values.PLACA;
+                                } else {
+                                    html += values.CHASSI;
+                                }
+                                html += "</td>\
+                                    <td class='tableTd'>" + (values.POTENCIA ?? "") + "</td>\
+                                    <td class='tableTd'>" + (values.CAPACIDADE ?? "") + "</td>\
+                                    <td class='tableTd'>" + (values.UNIDADE ?? "") + "</td>\
+                                    <td class='tableTd'>";
 
-                            var valor = FormataValor(values.VALORLOCACAO)
-                            valor = valor.substring(3, valor.length)
+                                var valor = FormataValor(values.VALORLOCACAO)
+                                valor = valor.substring(3, valor.length)
 
-                            html += valor + "</td>\
-                            </tr>";
-                            console.log(values.VALORLOCACAO);
-                            $("#tbody").append(html);
+                                html += valor + "</td>\
+                                </tr>";
+                                console.log(values.VALORLOCACAO);
+                                $("#tbody").append(html);
+                                }
+                            
                         }
 
                         $("#Descricao_" + values.PREFIXO.replace(".", "")).on("change", function () {

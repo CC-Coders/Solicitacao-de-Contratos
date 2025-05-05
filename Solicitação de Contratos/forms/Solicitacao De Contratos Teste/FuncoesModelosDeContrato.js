@@ -334,6 +334,7 @@ function ModeloContrato() {
         if ($("#atividade").val() != 19) {
             $("#ContratoNumero").attr("readonly", "readonly");
             $("#CentroCusto").attr("readonly", "readonly");
+            $("#valorContrato").attr("readonly", "readonly");
         } else {
             $("#ContratoNumero").removeAttr("readonly");
             $("#ContratoNumero").on("focus", function () {
@@ -1157,6 +1158,7 @@ function MostraOpcoesAnexosDoModelo(id){
     var modelo = jsonModelosDeContrato.find(e=>{
         return e.id == id;
     });
+    console.log("modelos ==> ", modelo)
 
     if (modelo.anexos.includes("CNPJ") || modelo.anexos.includes("QSA")) {
         $("#divAnexoFornecedor").show();
@@ -1200,6 +1202,38 @@ function MostraOpcoesAnexosDoModelo(id){
         $("#divAnexoFormTributacao").show();
     }else{
         $("#divAnexoFormTributacao").hide();
+    }
+
+    if (modelo.anexos.includes("PropostaComercial")) {
+        $("#divAnexoPropostaComer").show();
+        
+    }else{
+        $("#divAnexoPropostaComer").hide();
+    }
+
+    if (modelo.anexos.includes("RegularidadeFGTS")) {
+        $("#divAnexoRegularidadeFGTS").show();
+    }else{
+        $("#divAnexoRegularidadeFGTS").hide();
+    }
+
+    if (modelo.anexos.includes("CNDs")) {
+        $("#divAnexoCNDs").show();
+        $("#divAnexoDocsAdicionais").show();
+    }else{
+        $("#divAnexoCNDs").hide();
+        $("#divAnexoDocsAdicionais").hide();
+    }
+
+    if (modelo.anexos.includes("CRLV")) {
+        $("#divAnexoCRLV").show();
+    }else{
+        $("#divAnexoCRLV").hide();
+    }
+    if (modelo.anexos.includes("LaudoTec")) {
+        $("#divAnexoLaudoTec").show();
+    }else{
+        $("#divAnexoLaudoTec").hide();
     }
 }
 function gerarWord() {
