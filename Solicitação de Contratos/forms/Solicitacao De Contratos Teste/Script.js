@@ -435,8 +435,12 @@ $(document).ready(function () {
                         " + values.STATUS + "\
                         <br><br>\
                     </div>\
+                </div>\
+                <div style='text-align:center;'>\
+                    <button class='btn btn-primary' id='btnAbrirDocumentos'>Abrir Documentos</button>\
                 </div>";
             $("#divContratoPrincipal2").find(".panel-body").append(div);
+            $("#btnAbrirDocumentos").on("click",buscaDocumentosDoContrato);
             ValidaTerminoTabContratoPrincipal(true);
             $("#divContratoPrincipal").hide();
             gerarContrato();
@@ -493,8 +497,12 @@ $(document).ready(function () {
                         " + values.STATUS + "\
                         <br><br>\
                     </div>\
+                </div>\
+                <div style='text-align:center;'>\
+                    <button class='btn btn-primary' id='btnAbrirDocumentos'>Abrir Documentos</button>\
                 </div>";
             $("#divContratoPrincipal2").find(".panel-body").append(div);
+            $("#btnAbrirDocumentos").on("click",buscaDocumentosDoContrato);
             ValidaTerminoTabContratoPrincipal(true);
             $("#divContratoPrincipal").hide();
             gerarContrato();

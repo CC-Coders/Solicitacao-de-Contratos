@@ -2130,3 +2130,201 @@ function visualizarManualForaPadrao() {
         })
     })
 }
+
+
+
+
+// Lista de Documentos na pasta do Contrato
+async function buscaPastaDeContratosDaObra() {
+    try {
+        const codigoObra = $("#codigoObra").val();
+
+        const regional = buscaRegionalPeloCodigoDaObra(codigoObra);
+        const idsPastasRegionais = {
+            HOMOLOGACAO: 13697,
+            PRODUCAO: 49
+        };
+
+        const idPastaRegionais = idsPastasRegionais[getEnviroment()];
+
+
+        const regionais = await buscaDocumentosDaPasta(idPastaRegionais);
+        var idPastaRegional = regionais.find(e => e.documentDescription.toUpperCase() == regional);
+        if (!idPastaRegional) {
+            throw "Pasta da Regional (" + regional + ") não encontrada!";
+        }
+
+        var obras = await buscaDocumentosDaPasta(idPastaRegional.documentId);
+        var idPastaObra = obras.find(obra => obra.documentDescription.substring(0, 7) == codigoObra);
+        if (!idPastaObra) {
+            throw "Pasta da Obra (" + codigoObra + ") não encontrada!";
+        }
+
+        var pastasDaObra = await buscaDocumentosDaPasta(idPastaObra.documentId);
+        var idPastaAcompanhamento = pastasDaObra.find(e => e.documentDescription == "Acompanhamento e Planejamento da Obra");
+        if (!idPastaAcompanhamento) {
+            throw "Pasta (Acompanhamento e Planejamento da Obra) não encontrada!";
+        }
+
+        var pastasAcompanhamento = await buscaDocumentosDaPasta(idPastaAcompanhamento.documentId);
+        var idPastaContratos = pastasAcompanhamento.find(e => e.documentDescription == "Contratos");
+        if (!idPastaContratos) {
+            throw "Pasta (Contratos) não encontrada!";
+        }
+
+        var pastasContratos = await buscaDocumentosDaPasta(idPastaContratos.documentId);
+        var idPastaContratosObras = pastasContratos.find(e => e.documentDescription == "Contratos Obras");
+        if (!idPastaContratosObras) {
+            throw "Pasta (Contratos Obras) não encontrada!";
+        }
+
+        return idPastaContratosObras.documentId;
+
+    } catch (error) {
+        FLUIGC.toast({
+            title: "Erro ao Buscar Documentos do Contrato",
+            message: error,
+            type: "warning"
+        });
+        throw error;
+    }
+
+    function buscaRegionalPeloCodigoDaObra(codigoObra) {
+        const codigosRegionais = {
+            1.2: "OBRAS REGIONAL SUL",
+            1.3: "OBRAS REGIONAL NORTE",
+            1.4: "OBRAS REGIONAL SUDESTE",
+            1.5: "OBRAS REGIONAL NORDESTE",
+            1.6: "OBRAS REGIONAL CENTRO OESTE",
+        }
+        var regional = codigosRegionais[codigoObra.substring(0, 3)];
+        if (regional) {
+            return regional;
+        } else {
+            throw "Regional da Obra (" + codigoObra + ") não encontrada!";
+        }
+    }
+}
+function buscaDocumentosDaPasta(documentId) {
+    return new Promise((resolve, reject) => {
+        var url = parent.WCMAPI.serverURL + `/content-management/api/v2/folders/${documentId}/documents?order=documentDescription&page=1&pageSize=1000`;
+        $.ajax({
+            url: url,
+            method: "GET",
+            success: result => {
+                resolve(result.invdata);
+            },
+            error: e => {
+                reject(e);
+            }
+        });
+    });
+
+}
+async function buscaDocumentosDoContrato() {
+    try {
+        const codigoContrato = $("#CodigoContrato").val().split(" - ")[0].trim();
+        const codigoContrato2 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "_").trim();
+        const codigoContrato3 = $("#CodigoContrato").val().split(" - ")[0].replace("/", "-").trim();
+        var pastaContrato = listContratosPasta.find(e => {
+            return e.documentDescription.substring(0, 14).trim() == codigoContrato || e.documentDescription.substring(0, 14).trim() == codigoContrato2 || e.documentDescription.substring(0, 14).trim() == codigoContrato3;
+        });
+        if (!pastaContrato) {
+            throw "Pasta do Contrato (" + codigoContrato + ") não encontrada!";
+        }
+        var documentos = await buscaDocumentosDaPasta(pastaContrato.documentId);
+        geraModalDocumentos(documentos);
+
+        function geraModalDocumentos(documentos) {
+            var htmlLinhas = geraHtmlLinhas(documentos);
+            var html =
+                `<table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Data</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${htmlLinhas}
+                </tbody>
+            </table>`;
+
+            var myModal = FLUIGC.modal({
+                title: 'Documentos',
+                content: html,
+                id: 'fluig-modal',
+                size: 'full',
+                actions: [{
+                    'label': 'Fechar',
+                    'autoClose': true
+                }]
+            }, function (err, data) {
+                if (err) {
+                    // do error handling
+                } else {
+                    // do something with data
+                }
+            });
+
+            function geraHtmlLinhas(documentos) {
+                var html = "";
+
+                for (const documento of documentos) {
+                    var dataCriacao = new Date(documento.createDate);
+                    var dia = dataCriacao.getDate();
+                    dia = dia < 10 ? "0" + dia : dia;
+                    var mes = dataCriacao.getMonth() + 1;
+                    mes = mes < 10 ? "0" + mes : mes;
+                    var ano = dataCriacao.getFullYear();
+
+                    html +=
+                        `<tr>
+                        <td><a href="${documento.fileUrl}" target="_blank">${documento.documentDescription}</a></td>
+                        <td>${dia + "/" + mes + "/" + ano}</td>
+                        <td style="text-align:center;"><a class="btn btn-primary" download="${documento.documentDescription}" href="${documento.fileUrl}">Download</a></td>
+                    </tr>`
+                }
+                return html;
+            }
+        }
+    } catch (error) {
+        FLUIGC.toast({
+            title:"Erro ao buscar documentos do Contrato: ",
+            message:error,
+            type:"warning"
+        })
+        throw error;
+    }
+}
+
+var idPastaDeContratos = null;
+var listContratosPasta = null;
+
+if ($("#tpCont").val() == "3" || $("#tpCont").val() == "4") {
+    //Caso o tipo da Solicitação seja Aditivo ou Rescisão, busca a Pasta de Documento do Contrato Principal
+    setTimeout(async () => {
+        // Busca previamente a pasta de Contratos da Obra, para otimizar a busca dos Documentos pros Aditivos e Rescisões
+        idPastaDeContratos = await buscaPastaDeContratosDaObra();
+        listContratosPasta = await buscaDocumentosDaPasta(idPastaDeContratos);
+    }, 500);    
+}
+
+
+
+
+
+// Utils
+function getEnviroment(){
+    var url = parent.WCMAPI.getServerURL();
+    if (url == 'http://fluig.castilho.com.br:1010') {
+        return "PRODUCAO";
+    }
+    else if (url == 'http://homologacao.castilho.com.br:2020') {
+        return "HOMOLOGACAO";
+    }
+    else{
+        return "HOMOLOGACAO";
+    }
+}
