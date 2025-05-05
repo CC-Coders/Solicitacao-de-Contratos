@@ -632,6 +632,23 @@ function VerificaAnexos() {
         else if (found.anexos.includes("TermoDeImovel") && ($("#idDocTermoDeImovel").val() == null || $("#idDocTermoDeImovel").val() == "")) {
             return "Termo de Solicitação de Imóvel não anexado!";
         }
+
+        //NOVOS ANEXOS PRESTACAO SERVICOS
+        else if (found.anexos.includes("PropostaComercial") && ($("#idDocPropostaComercial").val() == null || $("#idDocPropostaComercial").val() == "")) {
+            return "Proposta Comercial não anexado!";
+        }
+        else if (found.anexos.includes("RegularidadeFGTS") && ($("#idDocRegularidadeFGTS").val() == null || $("#idDocRegularidadeFGTS").val() == "")) {
+            return "Certidão de regularidade FGTS não anexado!";
+        }
+        else if (found.anexos.includes("CNDs") && ($("#idDocCNDs").val() == null || $("#idDocCNDs").val() == "")) {
+            return "CNDs (municipal, estadual, federal e trabalhista) não anexado!";
+        }
+        else if (found.anexos.includes("CRLV") && ($("#idDocCRLV").val() == null || $("#idDocCRLV").val() == "")) {
+            return "CRLV (com titularidade da empresa contratada) não anexado!";
+        }
+        else if (found.anexos.includes("LaudoTec") && ($("#idDocLaudoTec").val() == null || $("#idDocLaudoTec").val() == "")) {
+            return "Laudo Técnico, Plano de Manutenção e ART não anexado!";
+        }
     }
     else if (atividade == 19) {
         if ($("#idDocContrato").val() == null || $("#idDocContrato").val() == "") {

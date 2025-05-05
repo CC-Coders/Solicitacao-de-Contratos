@@ -174,6 +174,9 @@ function AnexaDocumentosInicio() {
     if (hAPI.getCardValue("idDocQSA") != "" && hAPI.getCardValue("idDocQSA") != null) {
         AnexarDocumento(hAPI.getCardValue("idDocQSA"));
     }
+    if (hAPI.getCardValue("idDocFormTributacao") != "" && hAPI.getCardValue("idDocFormTributacao") != null) {
+        AnexarDocumento(hAPI.getCardValue("idDocFormTributacao"));
+    }
     if (hAPI.getCardValue("idDocNF") != "" && hAPI.getCardValue("idDocNF") != null) {
         AnexarDocumento(hAPI.getCardValue("idDocNF"));
     }
@@ -191,6 +194,28 @@ function AnexaDocumentosInicio() {
         for (var i = 0; i < ids.length; i++) {
             AnexarDocumento(ids[i]);
         }
+    }
+    //Novos anexos Prestacao Servico
+    if (hAPI.getCardValue("idDocPropostaComercial") != "" && hAPI.getCardValue("idDocPropostaComercial") != null) {
+        AnexarDocumento(hAPI.getCardValue("idDocPropostaComercial"));
+    }
+    if (hAPI.getCardValue("idDocRegularidadeFGTS") != "" && hAPI.getCardValue("idDocRegularidadeFGTS") != null) {
+        AnexarDocumento(hAPI.getCardValue("idDocRegularidadeFGTS"));
+    }
+    if (hAPI.getCardValue("idDocCNDs") != "" && hAPI.getCardValue("idDocCNDs") != null) {
+        var ids = hAPI.getCardValue("idDocCNDs").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
+    }
+    if (hAPI.getCardValue("idDocLaudoTec") != "" && hAPI.getCardValue("idDocLaudoTec") != null) {
+        var ids = hAPI.getCardValue("idDocLaudoTec").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
+    }
+    if (hAPI.getCardValue("idDocCRLV") != "" && hAPI.getCardValue("idDocCRLV") != null) {
+        AnexarDocumento(hAPI.getCardValue("idDocCRLV"));
     }
     if (hAPI.getCardValue("idDocTermoDeImovel") != "" && hAPI.getCardValue("idDocTermoDeImovel") != null) {
         AnexarDocumento(hAPI.getCardValue("idDocTermoDeImovel"));

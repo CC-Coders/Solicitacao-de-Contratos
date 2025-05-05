@@ -940,6 +940,95 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="panel panel-default" id="divAnexoDocsAdicionais">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Documentações Adicionais</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4" id="divAnexoPropostaComer">
+                                        <label for="inputFilePropostaComercial">
+                                            Proposta Comercial:
+                                            <br />
+                                            <div style="display: flex; align-items: baseline">
+                                                <button class="btn btn-primary"
+                                                    onclick="$('#inputFilePropostaComercial').click();"
+                                                    style="margin-right: 5px">Escolher arquivo</button>
+                                                <div
+                                                    style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+                                                    Nenhum arquivo selecionado</div>
+                                                <input type="file" name="inputFilePropostaComercial" id="inputFilePropostaComercial"
+                                                    class="form-control" style="display: none" multiple />
+                                            </div>
+                                        </label><br>
+                                    </div>
+                                    <div class="col-md-4" id="divAnexoRegularidadeFGTS">
+                                        <label for="inputFileRegularidadeFGTS">
+                                            Certidão de regularidade FGTS:
+                                            <br />
+                                            <div style="display: flex; align-items: baseline">
+                                                <button class="btn btn-primary"
+                                                    onclick="$('#inputFileRegularidadeFGTS').click();"
+                                                    style="margin-right: 5px">Escolher arquivo</button>
+                                                <div
+                                                    style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+                                                    Nenhum arquivo selecionado</div>
+                                                <input type="file" name="inputFileRegularidadeFGTS" id="inputFileRegularidadeFGTS"
+                                                    class="form-control" style="display: none" multiple />
+                                            </div>
+                                        </label><br>
+                                    </div>
+                                    <div class="col-md-4" id="divAnexoCNDs">
+                                        <label for="inputFileCNDs">
+                                            CNDs (municipal, estadual, federal e trabalhista):
+                                            <br />
+                                            <div style="display: flex; align-items: baseline">
+                                                <button class="btn btn-primary"
+                                                    onclick="$('#inputFileCNDs').click();"
+                                                    style="margin-right: 5px">Escolher arquivo</button>
+                                                <div
+                                                    style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+                                                    Nenhum arquivo selecionado</div>
+                                                <input type="file" name="inputFileCNDs" id="inputFileCNDs"
+                                                    class="form-control" style="display: none" multiple />
+                                            </div>
+                                        </label><br>
+                                    </div>
+                                    <div class="col-md-4" id="divAnexoLaudoTec">
+                                        <label for="inputFileLaudoTec">
+                                            Laudo Técnico, Plano de Manutenção e ART;:
+                                            <br />
+                                            <div style="display: flex; align-items: baseline">
+                                                <button class="btn btn-primary"
+                                                    onclick="$('#inputFileLaudoTec').click();"
+                                                    style="margin-right: 5px">Escolher arquivo</button>
+                                                <div
+                                                    style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+                                                    Nenhum arquivo selecionado</div>
+                                                <input type="file" name="inputFileLaudoTec" id="inputFileLaudoTec"
+                                                    class="form-control" style="display: none" multiple />
+                                            </div>
+                                        </label><br>
+                                    </div>
+                                    <div class="col-md-4" id="divAnexoCRLV">
+                                        <label for="inputFileCRLV">
+                                            CRLV (com titularidade da empresa contratada):
+                                            <br />
+                                            <div style="display: flex; align-items: baseline">
+                                                <button class="btn btn-primary"
+                                                    onclick="$('#inputFileCRLV').click();"
+                                                    style="margin-right: 5px">Escolher arquivo</button>
+                                                <div
+                                                    style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+                                                    Nenhum arquivo selecionado</div>
+                                                <input type="file" name="inputFileCRLV" id="inputFileCRLV"
+                                                    class="form-control" style="display: none" multiple />
+                                            </div>
+                                        </label><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <br>
                             <div class="col-md-4" id="divAnexoOutros">
@@ -1326,6 +1415,12 @@
                 
                 <input type="hidden" name="idDocLaudo" id="idDocLaudo" />
                 <input type="hidden" name="idDocPlano" id="idDocPlano" />
+
+                <input type="hidden" name="idDocPropostaComercial" id="idDocPropostaComercial" />
+                <input type="hidden" name="idDocRegularidadeFGTS" id="idDocRegularidadeFGTS" />
+                <input type="hidden" name="idDocCNDs" id="idDocCNDs" />
+                <input type="hidden" name="idDocLaudoTec" id="idDocLaudoTec" />
+                <input type="hidden" name="idDocCRLV" id="idDocCRLV" />
 
                 <input type="hidden" name="idDocFormTributacao" id="idDocFormTributacao" />
 

@@ -5,7 +5,7 @@ jsonModelosDeContrato = [
         "nome": "Locação de Equipamentos Sem Mão de Obra",
         "equipamentos":"true",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa"
+            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa", "CRLV", "LaudoTec", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             "divOptLocEquipamento"
@@ -41,7 +41,7 @@ jsonModelosDeContrato = [
         "nome": "Locação de Equipamentos Com Mão de Obra",
         "equipamentos":"true",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa", "FormTributacao"
+            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa", "FormTributacao", "CRLV", "LaudoTec", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             "divOptLocEquipamento"
@@ -120,7 +120,7 @@ jsonModelosDeContrato = [
         "nome": "Contrato de Transporte de Material - Valor Fixo",
         "equipamentos":"true",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa"
+            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             "divOptTransporteMaterial"
@@ -132,7 +132,7 @@ jsonModelosDeContrato = [
         "nome": "Contrato de Transporte de Material - Fretes e Carretos",
         "equipamentos":"true",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa"
+            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             "divOptTransporteMaterial"
@@ -144,7 +144,7 @@ jsonModelosDeContrato = [
         "nome": "Prestação de Serviços por Preço Unitário - Com retenção - Com GFIP no CEI da Obra",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao"
+            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
            // "divOptPretacaoServicos"
@@ -156,7 +156,7 @@ jsonModelosDeContrato = [
         "nome": "Prestação de Serviços por Preço Unitário - Com retenção - Sem GFIP no CEI da Obra",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao"
+            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
           //  "divOptPretacaoServicos"
@@ -168,7 +168,7 @@ jsonModelosDeContrato = [
         "nome": "Prestação de Serviços - Valor Total - Com retenção - Com GFIP no CEI da Obra",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao"
+            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             //"divOptPretacaoServicos"
@@ -180,7 +180,7 @@ jsonModelosDeContrato = [
         "nome": "Prestação de Serviços - Valor Total - Com retenção - Sem GFIP no CEI da Obra",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao"
+            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             //"divOptPretacaoServicos"
@@ -204,7 +204,7 @@ jsonModelosDeContrato = [
         "nome": "Contrato de Transporte de Funcionários",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador"
+            "CNPJ", "QSA", "DocsAdministrador", "CRLV", "LaudoTec", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
 
@@ -290,10 +290,10 @@ jsonModelosDeContrato = [
     {
         "id":"26",
         "tipo": "Contrato",
-        "nome": "Ferrovias - Locação de Equipamentos Sem Mão de Obra",
+        "nome": "Ferrovias - Locação de Equipamentos Sem Mão de Obra", 
         "equipamentos":"true",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa"
+            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa", "CRLV", "LaudoTec", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             "divOptRailLocEquipamento"
@@ -305,7 +305,7 @@ jsonModelosDeContrato = [
         "nome": "Ferrovias - Locação de Equipamentos Com Mão de Obra",
         "equipamentos":"true",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa"
+            "CNPJ", "QSA", "DocsAdministrador", "NFRemessa", "CRLV", "LaudoTec", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             "divOptRailLocEquipamento"
