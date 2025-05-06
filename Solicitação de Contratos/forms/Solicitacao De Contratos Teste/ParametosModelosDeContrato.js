@@ -144,7 +144,7 @@ jsonModelosDeContrato = [
         "nome": "Prestação de Serviços por Preço Unitário - Com retenção - Com GFIP no CEI da Obra",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
+            "CNPJ", "QSA", "DocsAdministrador", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
            // "divOptPretacaoServicos"
@@ -156,7 +156,7 @@ jsonModelosDeContrato = [
         "nome": "Prestação de Serviços por Preço Unitário - Com retenção - Sem GFIP no CEI da Obra",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
+            "CNPJ", "QSA", "DocsAdministrador", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
           //  "divOptPretacaoServicos"
@@ -168,7 +168,7 @@ jsonModelosDeContrato = [
         "nome": "Prestação de Serviços - Valor Total - Com retenção - Com GFIP no CEI da Obra",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
+            "CNPJ", "QSA", "DocsAdministrador", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             //"divOptPretacaoServicos"
@@ -180,7 +180,7 @@ jsonModelosDeContrato = [
         "nome": "Prestação de Serviços - Valor Total - Com retenção - Sem GFIP no CEI da Obra",
         "equipamentos":"false",
         "anexos":[
-            "CNPJ", "QSA", "DocsAdministrador", "Certidoes", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
+            "CNPJ", "QSA", "DocsAdministrador", "FormTributacao", "PropostaComercial", "RegularidadeFGTS", "CNDs"
         ],
         "opcoesModelo":[
             //"divOptPretacaoServicos"
