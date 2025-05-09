@@ -627,7 +627,7 @@ function VerificaAnexos() {
             return "NF de Remessa não anexada!";
         }
         else if (found.anexos.includes("Certidoes") && ($("#idDocCertidoes").val() == null || $("#idDocCertidoes").val() == "")) {
-            return "Certidões não anexadas!";
+            // return "Certidões não anexadas!";
         }
         else if (found.anexos.includes("TermoDeImovel") && ($("#idDocTermoDeImovel").val() == null || $("#idDocTermoDeImovel").val() == "")) {
             return "Termo de Solicitação de Imóvel não anexado!";

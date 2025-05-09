@@ -1193,7 +1193,7 @@ function MostraOpcoesAnexosDoModelo(id){
     }
 
     if (modelo.anexos.includes("Certidoes")) {
-        $("#divAnexoCertidoes").show();
+        $("#divAnexoCertidoes").hide();
     }else{
         $("#divAnexoCertidoes").hide();
     }
