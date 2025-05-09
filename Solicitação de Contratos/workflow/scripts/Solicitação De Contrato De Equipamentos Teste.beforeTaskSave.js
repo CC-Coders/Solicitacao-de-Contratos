@@ -734,7 +734,7 @@ function exportarContratoProRM() {
                     <CODCPGPRAZO>130</CODCPGPRAZO>\
 					<CODRPR>" + representante + "</CODRPR>";
             xml += (diaFaturamento == "" || diaFaturamento == 0 ? "<DIAFATURAMENTO>0</DIAFATURAMENTO>" : "<DIAFATURAMENTO>" + diaFaturamento + "</DIAFATURAMENTO>")
-            xml += "<PRECOFATURAMENTO>" + ValorToFloat(JSONItemContratoRM[i].Valor) + "</PRECOFATURAMENTO>\
+            xml += "<PRECOFATURAMENTO>" + ValorToFloat(JSONItemContratoRM[i].Valor).toString().replace(".",",") + "</PRECOFATURAMENTO>\
 					<CODMOEREAJUSTE>R$</CODMOEREAJUSTE>\
 					<CODCOLCFODEST>0</CODCOLCFODEST>\
 					<CODCFODEST>" + codFornecedor + "</CODCFODEST>";
