@@ -301,19 +301,19 @@ function GeraListaEquipamentosSelecionados() {
             eqpSel = JSON.parse(eqpSel);
         }
 
-        addItemListaEquipamentos(eqpSel, true);
+        addItemListaEquipamentos(eqpSel, "objetoEquipamentos", true);
         countEquipamentosSel++;
     }
 
     for (var i = 0; i < equipamentosContrato.length; i++) {
         var eqpSel = equipamentosContrato[countEquipamentosContrato];
 
-        addItemListaEquipamentos(eqpSel);
+        addItemListaEquipamentos(eqpSel, "equipamentosContrato");
         countEquipamentosContrato++;
     }
 }
 
-function addItemListaEquipamentos(eqpSel, adicionado = false) {
+function addItemListaEquipamentos(eqpSel, itemProp, adicionado = false) {
     eqpSel.TIPOCONTRATO = $("#modeloContrato").val() + " - " + $("#selectOptLocEquipamento").val();
 
     var li =
@@ -474,9 +474,9 @@ function addItemListaEquipamentos(eqpSel, adicionado = false) {
                                             <dl class="mg-3">\
                                                 <dt>Avaliação do Bem:</dt>\
                                                 <dd>' + percentSpan(eqpSel.AVALIACAOBEM ?? 0) + '&nbsp' +
-                                                    (eqpSel.AVALIACAOBEM > 5
-                                                    ? '<i class="text-success fluigicon fluigicon-circle-arrow-down icon-sm" aria-hidden="true"></i>'
-                                                    : '<i class="text-danger fluigicon fluigicon-circle-arrow-up icon-sm" aria-hidden="true"></i>') +
+                                                    (eqpSel.AVALIACAOBEM > 5 ?
+                                                        '<i class="text-danger fluigicon fluigicon-circle-arrow-up icon-sm" aria-hidden="true"></i>':
+                                                        '<i class="text-success fluigicon fluigicon-circle-arrow-down icon-sm" aria-hidden="true"></i>') +
                                                 '</dd>\
                                             </dl>\
                                             <dl class="mg-3">\
@@ -520,11 +520,11 @@ function addItemListaEquipamentos(eqpSel, adicionado = false) {
 
     var lastLi = $("#listaEquipamentosContrato").find("li:last");
 
-    onInputPropSuprimento('suprimentoValorFipe_' + eqpSel.ID, 'FIPE', lastLi, 'objetoEquipamentos', true);
-    onInputPropSuprimento('suprimentoValorImplemento_' + eqpSel.ID, 'VALORIMPLEMENTO', lastLi, 'objetoEquipamentos', true);
-    onInputPropSuprimento('suprimentoReferencia_' + eqpSel.ID, 'REFERENCIA', lastLi, 'objetoEquipamentos');
-    onInputPropSuprimento('suprimentoPrazoMeses_' + eqpSel.ID, 'PRAZOMESES', lastLi, 'objetoEquipamentos');
-    onInputPropSuprimento('suprimentoObservacoes_' + eqpSel.ID, 'OBSERVACOES', lastLi, 'objetoEquipamentos');
+    onInputPropSuprimento('suprimentoValorFipe_' + eqpSel.ID, 'FIPE', lastLi, itemProp, true);
+    onInputPropSuprimento('suprimentoValorImplemento_' + eqpSel.ID, 'VALORIMPLEMENTO', lastLi, itemProp, true);
+    onInputPropSuprimento('suprimentoReferencia_' + eqpSel.ID, 'REFERENCIA', lastLi, 'itemProp');
+    onInputPropSuprimento('suprimentoPrazoMeses_' + eqpSel.ID, 'PRAZOMESES', lastLi, 'itemProp');
+    onInputPropSuprimento('suprimentoObservacoes_' + eqpSel.ID, 'OBSERVACOES', lastLi, 'itemProp');
 
     lastLi.find('input[name="suprimentoPrazoContrato_' + eqpSel.ID + '"]').on('change', function () {
         var li = $(this).closest("li");
@@ -533,7 +533,7 @@ function addItemListaEquipamentos(eqpSel, adicionado = false) {
         var id = id.replace('itemSuprimento_', '');
 
         if (id && id > 0) {
-            let itens = JSON.parse($("#objetoEquipamentos").val());
+            let itens = JSON.parse($("#"+itemProp).val());
             let itemFiltrado = itens.filter(a => a.ID == id);
             if (itemFiltrado.length > 0) {
                 itemFiltrado[0].PRAZOCONTRATO = $(this).val();
@@ -549,7 +549,7 @@ function addItemListaEquipamentos(eqpSel, adicionado = false) {
                 itemFiltrado[0].PRAZOMESES = 0;
             }
 
-            $("#objetoEquipamentos").val(JSON.stringify(itens));
+            $("#"+itemProp).val(JSON.stringify(itens));
         }
     });
 
