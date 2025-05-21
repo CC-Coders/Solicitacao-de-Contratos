@@ -247,15 +247,11 @@ function formatarCurrency(v){
 }
 function currencySpan(v){
 	v = v ?? "";
-    v = v.toString().replace(/[^0-9]/g, '');
-    while (v.length < 3) {
-        v = '0' + v;
-    }
-                
-    const ip = parseInt(v.slice(0, -2)).toString();
-    const dp = v.slice(-2); 
-    const fi = ip.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return "R$" + (ip > 0 ? fi : "0") + ',' + dp;
+    v = parseFloat(v);
+    return v.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
 }
 function percentSpan(v, cd = 2){
     v = v.toString().replace(/[^0-9]/g, '');

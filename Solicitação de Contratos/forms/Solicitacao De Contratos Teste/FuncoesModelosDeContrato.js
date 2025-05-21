@@ -758,6 +758,7 @@ async function salvarHtml() {
     $("#htmlContrato").prop("outerHTML", $("#areaEditarHtml").tinymce().getContent().split("\n").join("").replace('<link href="SolicitacaoDeContratos.css" rel="stylesheet" />', ""));
     $("#htmlContrato").find(".divCampoContrato").css("color", "");
     $("#divEditaHtml, #btnSalvarClausulas").hide();
+    $("#areaEditarHtml").val("");
     await InsereValoresNosCampos();
     //await InsereValoresNosCamposAditivo()
     await EditarModelo();
