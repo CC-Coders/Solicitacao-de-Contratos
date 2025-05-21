@@ -139,7 +139,7 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
                 cadastrarSuprimento();
         } else {
             //Verifica se caso a solicitação sejá enviada para correção um complemento informando a alteração foi adicionado
-            if (atv == 9 || atv == 10 || atv == 19 || atv == 15 || atv == 122 || atv == 64 || atv == 17 || atv == 21 || atv == 23 || atv == 25 || atv == 27 || atv == 177 || atv == 30) {
+            if (atv == 9 || atv == 10 || atv == 19 || atv == 15 || atv == 122 || atv == 64 || atv == 17 || atv == 21 || atv == 23 || atv == 25 || atv == 27 || atv == 177 || atv == 30 || atv == 118) {
                 // && (contOk == 2 || contOk == 3))
                 if (comentario == "") {
                     throw "Obrigatório informar um Complemento com a alteração necessária.";
