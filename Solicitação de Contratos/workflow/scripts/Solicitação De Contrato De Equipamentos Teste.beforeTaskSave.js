@@ -148,7 +148,7 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
         }
     }
     else {
-        if ((hAPI.getCardValue("tpCont") == 1 || hAPI.getCardValue("tpCont") == 4) && (hAPI.getCardValue("isContratoSave") != 1 || hAPI.getCardValue("SalvaHtmlContrato") == "" || hAPI.getCardValue("valorCamposContrato") == "")) {
+        if ((hAPI.getCardValue("tpCont") == 1 || hAPI.getCardValue("tpCont") == 4 || hAPI.getCardValue("tpCont") == 3) && (hAPI.getCardValue("isContratoSave") != 1 || hAPI.getCardValue("SalvaHtmlContrato") == "" || hAPI.getCardValue("valorCamposContrato") == "")) {
             throw "Necessário salvar o contrato.";
         }
     }
