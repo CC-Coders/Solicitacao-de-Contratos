@@ -1,3 +1,22 @@
+var ATIVIDADES = {
+    INICIO:7,
+    INICIO_0:0,
+    ENGENHEIRO:9,
+    COORD_OBRAS:23,
+    SUPRIMENTOS:100,
+    SEGURANCA:101,
+    JURIDICO:15,
+    CONTROLADORIA:19,
+    COORD_CONTROLADORIA:21,
+    DIRETORIA:118,
+    ASSINATURA_ELETRONICA:30,
+    ADM_OBRA:32,
+    CONTROLADORIA_AGUARDANDO_RECEBIMENTO:33,
+    CONTROLADORIA_RECOLHE_ASSINATURA:34,
+    OBRA_RECEBE_VIAS_ORIGINAIS:35,
+}
+
+
 function beforeTaskSave(colleagueId,nextSequenceId,userList){
 	var contOk = hAPI.getCardValue("decisaoCont");
     var tpcont = hAPI.getCardValue("tpCont");
@@ -32,7 +51,7 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
 
     if (atv != nextSequenceId) {
         if (contOk == 1 || atv == 0 || atv == 7 || atv == 34) {
-            if (atv == 0 || atv == 1 || atv == 7) {
+            if (atv ==  ATIVIDADES.INICIO_0 || atv == ATIVIDADES.INICIO) {
                 //Atividade inicio
                 if (tpcont == 2) {
                     AnexarDocumento(hAPI.getCardValue("idDocContrato"));
@@ -83,7 +102,7 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
                 }
                 var prazo = dia + "/" + mes + "/" + ano;
                 hAPI.setCardValue("dataExpira", prazo);
-            } else if (atv == 19) {
+            } else if (atv == ATIVIDADES.CONTROLADORIA) {
                 //Atividade Controladoria
                 if (contOk == 1) {
                     AnexarDocumento(hAPI.getCardValue("idDocContrato")); //Anexa na solicitação o contrato gerado ou o arquivo inserido
@@ -102,7 +121,7 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
                         atualizaStatusEquipParaEmVigencia();
                     }
                 }
-            } else if (atv == 21) { 
+            } else if (atv == ATIVIDADES.COORD_CONTROLADORIA) { 
                 log.info("contOk ==> "+ contOk);
                 if (contOk == 1 && hAPI.getCardValue("atividadeParalela")!= true && hAPI.getCardValue("atividadeParalela")!= "true") {
                     log.info("ifOk ==> "+ contOk);
@@ -118,14 +137,14 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
                         CriaAssinaturaEletronica();
                     }
                 }
-            } else if (atv == 30 || atv == 34) {
-                if (contOk == 1 || atv == 34) {
+            } else if (atv == ATIVIDADES.ASSINATURA_ELETRONICA || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {
+                if (contOk == 1 || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {
                     atualizaStatusEquipParaEmVigencia();
                 }
                 if (tpcont == 3) {
                     AtualizaStatusContrato("03");
                 }
-            }else if (atv == 118) {
+            }else if (atv == ATIVIDADES.DIRETORIA) {
                 log.info("contOkDiretoria ==> "+ contOk)
                 if (contOk == 1) {
                     log.info("radioOptAssinatura ==> "+ hAPI.getCardValue("radioOptAssinatura"))
