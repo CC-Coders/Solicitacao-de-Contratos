@@ -7,6 +7,10 @@
     <meta name="viewport" http-equiv="Content-type" content="text/html, charset=utf-8" />
     <link rel="stylesheet" href="SolicitacaoDeContratos.css" />
     <link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css" />
+
+    <!-- Castilho dev guide -->
+    <script src="/castilho_dev_guide/resources/js/castilho-consultas-rm.js"></script>
+
     <script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
     <script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
@@ -602,6 +606,7 @@
                                                 <option value="Marcio Rinaldo Guinossi">Marcio Rinaldo Guinossi</option>
                                                 <option value="Mario Rogers de Castilho">Mario Rogers de Castilho</option>
                                                 <option value="Servulo Sanches Correa">Servulo Sanches Correa</option>
+                                                <option value="José Mario de Castilho">José Mario de Castilho</option>
                                                 
                                             </select>
                                             <br />
@@ -1120,6 +1125,7 @@
                                     <option value="001">A VISTA</option>
                                     <option value="130">30 DIAS</option>
                                     <option value="145">45 DIAS</option>
+                                    <option value="160" selected>60 DIAS</option>
                                 </select>
                                 <span class="spanReadonly"></span>
                                 <br />
@@ -1425,6 +1431,8 @@
                 <input type="hidden" name="idDocFormTributacao" id="idDocFormTributacao" />
 
                 <input type="hidden" name="idDocTermoQuitacao" id="idDocTermoQuitacao" />
+
+                <input type="hidden" name="statusAssinaturaEletronica" id="statusAssinaturaEletronica">
             </div>
             <input type="hidden" name="hidden" id="hidden" />
             <div id="my_mm" style="height: 100mm; display: none"></div>

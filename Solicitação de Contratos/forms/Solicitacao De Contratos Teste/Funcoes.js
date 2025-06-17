@@ -230,14 +230,14 @@ function FormataValor(valor) {
     valor = parseFloat(valor);
     return valor.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
 }
-function formatarCurrency(v){
+function formatarCurrency(v) {
     v = v.toString().replace(/[^0-9]/g, '');
     while (v.length < 3) {
         v = '0' + v;
     }
-                
-    const ip = parseInt(v.slice(0, -2)).toString(); 
-    const dp = v.slice(-2); 
+
+    const ip = parseInt(v.slice(0, -2)).toString();
+    const dp = v.slice(-2);
     const fi = ip.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     const ti = (ip > 0 ? fi : "0") + ',' + dp;
     return {
@@ -245,31 +245,31 @@ function formatarCurrency(v){
         valor: Number(ip + '.' + dp)
     }
 }
-function currencySpan(v){
-	v = v ?? "";
+function currencySpan(v) {
+    v = v ?? "";
     v = parseFloat(v);
     return v.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
     });
 }
-function percentSpan(v, cd = 2){
+function percentSpan(v, cd = 2) {
     v = v.toString().replace(/[^0-9]/g, '');
     while (v.length < cd + 1) {
         v = '0' + v;
     }
-                
+
     const ip = parseInt(v.slice(0, -(cd))).toString();
-    const dp = v.slice(-(cd)); 
+    const dp = v.slice(-(cd));
     const fi = ip.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     return (ip > 0 ? fi : "0") + ',' + dp + "%";
 }
-function formatarPercentual(v, cd = 2){
+function formatarPercentual(v, cd = 2) {
     v = v.toString().replace(/[^0-9]/g, '');
     while (v.length < cd + 1) {
         v = '0' + v;
     }
-                
+
     const ip = parseInt(v.slice(0, -(cd))).toString(); // Parte inteira
     const dp = v.slice(-(cd));   // Parte decimal
     const fi = ip.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -467,17 +467,24 @@ function CriaDocFluig(idInput, i = 0) {
         var p4 = DatasetFactory.createConstraint("nome", fileName, fileName, ConstraintType.SHOULD);
         var p5 = DatasetFactory.createConstraint("descricao", fileName, fileName, ConstraintType.SHOULD);
         var p6 = DatasetFactory.createConstraint("pasta", 140518, 140518, ConstraintType.SHOULD); //Prod
-        //var p6 = DatasetFactory.createConstraint("pasta", 17926, 17926, ConstraintType.SHOULD); //Homolog
+        // var p6 = DatasetFactory.createConstraint("pasta", 17926, 17926, ConstraintType.SHOULD); //Homolog
 
         DatasetFactory.getDataset("CriacaoDocumentosFluig", null, [p1, p2, p3, p4, p5, p6], null, callback);
     };
 }
-function CriaDocFluigPromise(idInput, i = 0) {
+function CriaDocFluigPromise(idInput, i = 0, parentId) {
     return new Promise((resolve, reject) => {
         var files = $("#" + idInput)[0].files;
         var reader = new FileReader();
         var fileName = "";
         fileName = files[i].name;
+
+        if (!parentId) {
+            // Se não for informado um parentId cria o documento na Pasta de Anexos
+            parentId =  140518//Prod
+            // parentId =  17926//Homolog
+        }
+
 
         reader.readAsDataURL(files[i]);
         reader.onload = function (e) {
@@ -488,8 +495,7 @@ function CriaDocFluigPromise(idInput, i = 0) {
             var p3 = DatasetFactory.createConstraint("conteudo", bytes, bytes, ConstraintType.MUST);
             var p4 = DatasetFactory.createConstraint("nome", fileName, fileName, ConstraintType.SHOULD);
             var p5 = DatasetFactory.createConstraint("descricao", fileName, fileName, ConstraintType.SHOULD);
-            var p6 = DatasetFactory.createConstraint("pasta", 140518, 140518, ConstraintType.SHOULD); //Prod
-            //var p6 = DatasetFactory.createConstraint("pasta", 17926, 17926, ConstraintType.SHOULD); //Homolog
+            var p6 = DatasetFactory.createConstraint("pasta", parentId, parentId, ConstraintType.SHOULD);
 
             DatasetFactory.getDataset("CriacaoDocumentosFluig", null, [p1, p2, p3, p4, p5, p6], null, {
                 success: function (dataset) {
@@ -534,16 +540,7 @@ function CriaDocFluigPromise(idInput, i = 0) {
                 }
             });
         };
-
-
-
-
-
     });
-
-
-
-
 }
 function VerificaAnexos() {
     var atividade = $("#atividade").val();
@@ -552,11 +549,11 @@ function VerificaAnexos() {
             return "Contrato não anexado!";
         }
         var id = null;
-        if($("#anexosAditivoRecisa").val()){
+        if ($("#anexosAditivoRecisa").val()) {
             id = 30;
-        }else if($("#anexosRecisaoImovel").val()){
+        } else if ($("#anexosRecisaoImovel").val()) {
             id = 31;
-        }else if ($("#tpCont").val() != 2) {
+        } else if ($("#tpCont").val() != 2) {
             id = $("#idContrato").val();
         }
         else {
@@ -789,6 +786,10 @@ function selecionaFilial() {
         BuscaStatusContrato();
         BuscaCentroDeCusto();
         BuscaLocalDeEstoque();
+
+        setTimeout(() => {
+            preencheCamposRM();
+        }, 500);
         $("#codNatureza,#codContrato,#descContrato,#tipoContrato,#codCCusto,#representante,#tipoPagamento,#locEstoque,#codStaCnt,#tipoFaturamentoContratoRM,#dataContratoRM").attr("readonly", false);
 
         if ($("#tipoFaturamentoContratoRM").val() == 1) {
@@ -801,7 +802,7 @@ function selecionaFilial() {
         var date = $("#dataContrato").val();
         if (date != "") {
             date = date.split("/");
-            date = (date[0] < 10 ? "0" + date[0] : date[0]) + "/" + (date[1] < 10 ? "0" + date[1] : date[1]) + "/" + date[2];
+            date = (parseFloat(date[0]) < 10 ? "0" + parseInt(date[0]) : date[0]) + "/" + (date[1] < 10 ? "0" + parseInt(date[1]) : date[1]) + "/" + date[2];
             $("#dataContratoRM").val(date);
         }
 
@@ -962,7 +963,7 @@ function IncluirItemContrato() {
 
     $("#divItensContratoRM").append(html);
     $("#inputValorContratoRM" + countItem).mask("000.000.000.000,00", { reverse: true });
-    $('#inputProdContratoRM'+countItem).select2();
+    $('#inputProdContratoRM' + countItem).select2();
 
     /*     $("#inputProdContratoRM" + countItem).on("keyup", function (e) {
         if (e.key == "Enter") {
@@ -1218,22 +1219,27 @@ function ValidaAssinantes() {
         }
     }
 }
-function EnviaSolicitacao() {
+async function EnviaSolicitacao() {
     if ($("#atividade").val() == 19) {
         if ($("[name='decisaoCont']:checked").val() == 1) {
             if ($("#inputFileContrato")[0].files.length > 0) {
                 $("#idDocContrato").val("");
 
-
-                CriaDocFluigPromise("inputFileContrato").then(() => {
+                try {
+                    var parentId = await buscaOuCriaPastaDoContrato()
+                    CriaDocFluigPromise("inputFileContrato",0, parentId ).then(() => {
+                        loading.hide();
+                        $("#workflowActions > button:first-child", window.parent.document).click();
+                    });
+                } catch (error) {
+                    FLUIGC.toast({
+                        title:"Erro ao Anexar o Documento na pasta: ",
+                        message:error,
+                        type:"danger"
+                    });
                     loading.hide();
-
-                    $("#workflowActions > button:first-child", window.parent.document).click();
-
-
-                });
-
-
+                    return;
+                }
             } else {
                 if ($("#idDocContrato").val() == "" || $("#idDocContrato").val() == null || !confirm("Deseja manter o documento antigo?")) {
                     FLUIGC.toast({
@@ -1310,7 +1316,7 @@ function criaDocNoFluig() {
                     return "Erro ao criar arquivo. Favor entrar em contato com o administrador do sistema. Mensagem: " + res.values[0][1];
                 } else {
                     console.log("### GEROU docID = " + res.values[0].Resultado);
-                    CriaAssinaturaEletronica(res.values[0].Resultado,nome )
+                    CriaAssinaturaEletronica(res.values[0].Resultado, nome)
                     return res.values[0].Resultado;
                 }
             }
@@ -1562,16 +1568,16 @@ function ValidaTerminoTabAnexos(condicao) {
         $("#atabAnexos").addClass("btn-castilho");
     } else if (condicao == false) {
         $("#atabAnexos").removeClass("btn-castilho");
-    }else if (condicao == "aditivoRecisao") {
+    } else if (condicao == "aditivoRecisao") {
         if ($("#inputFileCNPJ").val() == "" || $("#inputFileQSA").val() == "") {
             $("#atabAnexos").removeClass("btn-castilho");
-        }else{
+        } else {
             $("#atabAnexos").addClass("btn-castilho");
         }
-    }else if (condicao == "recisaoImovel") {
+    } else if (condicao == "recisaoImovel") {
         if ($("#inputFileTermoQuitacao").val() == "") {
             $("#atabAnexos").removeClass("btn-castilho");
-        }else{
+        } else {
             $("#atabAnexos").addClass("btn-castilho");
         }
     } else {
@@ -1652,9 +1658,9 @@ function BuscaContratos() {
 function atribuicaoEngCoord() {
     var coord = null;
     var eng = null;
-    
+
     if ($("#hiddenCodColigada").val() == 1 && $("#hiddenObra").val() == 'Matriz Curitiba') {
-    	$("#engenheiro").val(1);
+        $("#engenheiro").val(1);
         $("#coordenador").val("padilha");
         return;
     }
@@ -1669,13 +1675,13 @@ function atribuicaoEngCoord() {
         DatasetFactory.createConstraint("paramLocal", $("#hiddenObra").val(), $("#hiddenObra").val(), ConstraintType.MUST),
         DatasetFactory.createConstraint("paramCodTmv", "1.1.98", "1.1.98", ConstraintType.MUST),
         DatasetFactory.createConstraint("paramValorTotal", 1001, 1001, ConstraintType.MUST)
-    ], null,{
-        success:(UsuariosComPermissaoDeAprovacao=>{
+    ], null, {
+        success: (UsuariosComPermissaoDeAprovacao => {
             for (const Aprovador of UsuariosComPermissaoDeAprovacao.values) {
                 if (Aprovador.limite > 1000 && Aprovador.limite <= 20000) {
                     //Eng
                     var SeAprovadorTemPapelAprovaContratos = DatasetFactory.getDataset("workflowColleagueRole", null, [
-                        DatasetFactory.createConstraint("workflowColleagueRolePK.colleagueId",Aprovador.usuarioFLUIG, Aprovador.usuarioFLUIG, ConstraintType.MUST),
+                        DatasetFactory.createConstraint("workflowColleagueRolePK.colleagueId", Aprovador.usuarioFLUIG, Aprovador.usuarioFLUIG, ConstraintType.MUST),
                         DatasetFactory.createConstraint("workflowColleagueRolePK.roleId", "aprovaContratos", "aprovaContratos", ConstraintType.MUST)
                     ], null);
                     if (SeAprovadorTemPapelAprovaContratos.values.length > 0) {
@@ -1690,10 +1696,10 @@ function atribuicaoEngCoord() {
                 else if (Aprovador.limite > 20000 && Aprovador.limite <= 250000) {
                     //Coord
                     var SeAprovadorTemPapelAprovaContratos = DatasetFactory.getDataset("workflowColleagueRole", null, [
-                        DatasetFactory.createConstraint("workflowColleagueRolePK.colleagueId", Aprovador.usuarioFLUIG,Aprovador.usuarioFLUIG, ConstraintType.MUST),
+                        DatasetFactory.createConstraint("workflowColleagueRolePK.colleagueId", Aprovador.usuarioFLUIG, Aprovador.usuarioFLUIG, ConstraintType.MUST),
                         DatasetFactory.createConstraint("workflowColleagueRolePK.roleId", "aprovaContratos", "aprovaContratos", ConstraintType.MUST)
                     ], null);
-        
+
                     if (SeAprovadorTemPapelAprovaContratos.values.length > 0) {
                         coord = Aprovador.usuarioFLUIG;
                     }
@@ -1705,8 +1711,8 @@ function atribuicaoEngCoord() {
             }
             if (coord != null) {
                 $("#coordenador").val(coord);
-            }            
-            
+            }
+
         })
     });
 }
@@ -1784,10 +1790,10 @@ function ValidaAntesDeEnviar() {
     if (($("[name='decisaoCont']:checked").val() == undefined || $("[name='decisaoCont']:checked").val() == null || $("[name='decisaoCont']:checked").val() == "") && (!atividadesSemDecisao.includes($("#atividade").val().toString()))) {
         return "Nenhuma decisão selecionada!";
     }
-    if (($("[name='decisaoContSuprimento']:checked").val() == undefined || $("[name='decisaoContSuprimento']:checked").val() == null || $("[name='decisaoContSuprimento']:checked").val() == "") && $("#atividade").val() == "100" ) {
+    if (($("[name='decisaoContSuprimento']:checked").val() == undefined || $("[name='decisaoContSuprimento']:checked").val() == null || $("[name='decisaoContSuprimento']:checked").val() == "") && $("#atividade").val() == "100") {
         return "Nenhuma decisão selecionada!";
     }
-    if (($("[name='decisaoContSeguranca']:checked").val() == undefined || $("[name='decisaoContSeguranca']:checked").val() == null || $("[name='decisaoContSeguranca']:checked").val() == "") && $("#atividade").val() == "101" ) {
+    if (($("[name='decisaoContSeguranca']:checked").val() == undefined || $("[name='decisaoContSeguranca']:checked").val() == null || $("[name='decisaoContSeguranca']:checked").val() == "") && $("#atividade").val() == "101") {
         return "Nenhuma decisão selecionada!";
     }
 
@@ -1845,10 +1851,10 @@ function ValidaAntesDeEnviar() {
         }
     }
     else if ($("#atividade").val() == 19) {
-    	if ($("#CodigoContrato").val() == null || $("#CodigoContrato").val() == ""){
-    		let codigoContrato = criaCodigoCnt($("#hiddenCodColigada").val(), $("#hiddenCODGCCUSTO").val());
-    		$("#CodigoContrato").val(codigoContrato);
-    	}
+        if ($("#CodigoContrato").val() == null || $("#CodigoContrato").val() == "") {
+            let codigoContrato = criaCodigoCnt($("#hiddenCodColigada").val(), $("#hiddenCODGCCUSTO").val());
+            $("#CodigoContrato").val(codigoContrato);
+        }
         if (($("#tpCont").val() != 2 || $("#tpCont").val() == 4) && ($("#isContratoSave").val() != 1 || $("#SalvaHtmlContrato").val() == "" || $("#valorCamposContrato").val() == "")) {
             $("#atabContrato").click();
             return "Necessário salvar o contrato.";
@@ -2006,15 +2012,15 @@ function ModalContratoPadrao() {
         content:
             '<p>Leia atentamente o <b>Manual de Contrato</b> a seguir antes de continuar a solicitação: </p>' +
             '<div class="viewerPdf">' +
-                '<embed id="pdfManualContrato" src="" type="application/pdf">' +
-                '<br><div class="col-md-12 custom-checkbox custom-checkbox-success checkboxAceite">' +
-                '<input type="checkbox" id="aceiteManual">' +
-                '<label class="form-check-label" for="aceiteManual"> Estou de acordo com o Manual de Contrato</label>' +
-                '</div><br>' +
+            '<embed id="pdfManualContrato" src="" type="application/pdf">' +
+            '<br><div class="col-md-12 custom-checkbox custom-checkbox-success checkboxAceite">' +
+            '<input type="checkbox" id="aceiteManual">' +
+            '<label class="form-check-label" for="aceiteManual"> Estou de acordo com o Manual de Contrato</label>' +
+            '</div><br>' +
             '</div>' +
             '<div class="btnArea">' +
-                '<button type="button" class="btn btn-secondary" style="display: none;" disabled id="btnCancelar">Cancelar</button>' +
-                '<button type="button" class="btn btn-success" data-dismiss="modal" disabled id="btnSalvar">Continuar</button>' +
+            '<button type="button" class="btn btn-secondary" style="display: none;" disabled id="btnCancelar">Cancelar</button>' +
+            '<button type="button" class="btn btn-success" data-dismiss="modal" disabled id="btnSalvar">Continuar</button>' +
             '</div>',
     }, function (err) {
         if (err) {
@@ -2030,7 +2036,7 @@ function ModalContratoPadrao() {
                 $("#pdfManualContrato").attr("src", url + "#view=FitV");
             })
 
-            $(".close").on("click", function() {
+            $(".close").on("click", function () {
                 location.reload();
             });
         }
@@ -2045,35 +2051,35 @@ function ModalContratoForaPadrao() {
         content:
             '<p>Leia atentamente o <b>Manual de Contrato</b> a seguir antes de continuar a solicitação: </p>' +
             '<div class="viewerPdf">' +
-                '<embed id="pdfManualContrato" src="" type="application/pdf">' +
-                '<br><div class="col-md-12 custom-checkbox custom-checkbox-success checkboxAceite">' +
-                '<input type="checkbox" id="aceiteManual">' +
-                '<label class="form-check-label" for="aceiteManual"> Estou de acordo com o Manual de Contrato</label>' +
-                '</div><br>' +
+            '<embed id="pdfManualContrato" src="" type="application/pdf">' +
+            '<br><div class="col-md-12 custom-checkbox custom-checkbox-success checkboxAceite">' +
+            '<input type="checkbox" id="aceiteManual">' +
+            '<label class="form-check-label" for="aceiteManual"> Estou de acordo com o Manual de Contrato</label>' +
+            '</div><br>' +
             '</div>' +
             '<div class="btnArea">' +
-                '<button type="button" class="btn btn-secondary" style="display: none;" disabled id="btnCancelar">Cancelar</button>' +
-                '<button type="button" class="btn btn-success" data-dismiss="modal" disabled id="btnSalvar">Continuar</button>' +
+            '<button type="button" class="btn btn-secondary" style="display: none;" disabled id="btnCancelar">Cancelar</button>' +
+            '<button type="button" class="btn btn-success" data-dismiss="modal" disabled id="btnSalvar">Continuar</button>' +
             '</div>',
-}, function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        $('#aceiteManual').change(function () {
-            var checked = $(this).prop('checked');
+    }, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            $('#aceiteManual').change(function () {
+                var checked = $(this).prop('checked');
 
-            $('#btnCancelar, #btnSalvar').prop('disabled', !checked);
-        });
+                $('#btnCancelar, #btnSalvar').prop('disabled', !checked);
+            });
 
-        visualizarManualForaPadrao($("#idManualContrato").val()).then(function (url) {
-            $("#pdfManualContrato").attr("src", url + "#view=FitV");
-        })
+            visualizarManualForaPadrao($("#idManualContrato").val()).then(function (url) {
+                $("#pdfManualContrato").attr("src", url + "#view=FitV");
+            })
 
-        $(".close").on("click", function() {
-            location.reload();
-        });
-    }
-})
+            $(".close").on("click", function () {
+                location.reload();
+            });
+        }
+    })
     return modalForaPadrao;
 }
 
@@ -2084,7 +2090,7 @@ function visualizarManualPadrao() {
             contentType: "application/json",
             url: "http://fluig.castilho.com.br:1010" + "/api/public/ecm/document/downloadURL/" + 950990, //Prod
             // url: "http://desenvolvimento.castilho.com.br:3232" + "/api/public/ecm/document/downloadURL/" + 5490, //Desenv
-            
+
             success: function (data) {
                 resolve(data.content);
             },
@@ -2109,7 +2115,7 @@ function visualizarManualForaPadrao() {
             contentType: "application/json",
             url: "http://fluig.castilho.com.br:1010" + "/api/public/ecm/document/downloadURL/" + 950991, //Prod
             // url: "http://desenvolvimento.castilho.com.br:3232" + "/api/public/ecm/document/downloadURL/" + 5491, //Desenv
-            
+
             success: function (data) {
                 resolve(data.content);
             },
@@ -2128,6 +2134,208 @@ function visualizarManualForaPadrao() {
 }
 
 
+// Campos RM
+function preencheCamposRM() {
+    var CODCOLIGADA = $("#codColigada").val();
+    var CODFILIAL = $("#codFilial").val();
+
+    var CODCCUSTO = $("#codigoObra").val();
+    $("#codCCusto").val(CODCCUSTO).change();
+
+
+    var idModeloContrato = $("#idModeloContrato").val();
+
+    $("#tipoPagamento").val("160");
+    var CNPJFornecedor = $("#FornecedorCNPJ").val();
+
+    window["Campofornecedor"].setValue(CNPJFornecedor)
+
+
+    var ds = DatasetFactory.getDataset("FCFO", null, [
+        DatasetFactory.createConstraint("CGCCFO", CNPJFornecedor, CNPJFornecedor, ConstraintType.MUST)
+    ], null);
+    $("#codFornecedor").val(ds.values[0].CODCFO)
+
+
+   var modeloContratofound = dadosDoModeloDoContrato();
+    if (modeloContratofound) {
+        $("#tipoContrato").val(modeloContratofound.tipoRM);
+        var rep = representanteCastilho(CODCOLIGADA, modeloContratofound.nome);
+        var value = null
+        $("#representante").find(`option`).each(function () {
+            if ($(this).text() == rep) {
+                value = $(this).val()
+            }
+        });
+
+        $("#representante").val(value);
+
+        var isLocacaoImovel = modeloContratofound.nome == "Locação de Imóvel - Pessoa Jurídica" || modeloContratofound.nome == "Locação de imóvel - Pessoa Física"
+
+        var periodico = 1;
+        var porMedicao = 2;
+    }
+
+
+    $("#btnItensContratoRM").click();
+    IncluirRateioItemContrato(1)
+
+    var CODCCUSTO_VLI_MANUTENCAO = "1.4.025";
+
+    if (isLocacaoImovel) {
+        $("#tipoFaturamentoContratoRM").val(periodico).change();
+        if (CODCCUSTO != CODCCUSTO_VLI_MANUTENCAO) {
+            $(".selectDepartamentoRateioItensContratoRM").val("1.3.01");
+        }
+    } else {
+        $("#tipoFaturamentoContratoRM").val(porMedicao).change();
+        if (CODCCUSTO != CODCCUSTO_VLI_MANUTENCAO) {
+            $(".selectDepartamentoRateioItensContratoRM").val("1.3.03");
+        }
+
+    }
+
+
+}
+
+function dadosDoModeloDoContrato(){
+    var idModeloContrato = $("#idModeloContrato").val();
+     var modelosDeContrato = [
+        {
+            id: 1,
+            nome: "LocacaoEquipamentosSMO",
+            tipoRM: "06"
+        },
+        {
+            id: 2,
+            nome: "Locação de imóvel - Pessoa Física",
+            tipoRM: "04"
+        },
+        {
+            id: 3,
+            nome: "Locação de Imóvel - Pessoa Jurídica",
+            tipoRM: "04"
+        },
+        {
+            id: 4,
+            nome: "Locação de equipamentos com mão de obra",
+            tipoRM: "09"
+        },
+        {
+            id: 5,
+            nome: "Locação de container",
+            tipoRM: "06"
+        },
+        {
+            id: 11,
+            nome: "Transporte de materiais - valor fixo",
+            tipoRM: "11"
+        },
+        {
+            id: 12,
+            nome: "Transporte de materiais - Fretes e Carretos",
+            tipoRM: "1"
+        },
+        {
+            id: 13,
+            nome: "Prestação de Serviços por Preço Unitário",
+            tipoRM: "10"
+        },
+        {
+            id: 15,
+            nome: "Prestação de Serviços - Valor Total",
+            tipoRM: "10"
+        },
+        {
+            id: 17,
+            nome: "Locação de Sanitários",
+            tipoRM: "10"
+        },
+        {
+            id: 18,
+            nome: "Transporte de Funcionários",
+            tipoRM: "10"
+        }
+    ];
+    var modeloContratofound = modelosDeContrato.find(e => e.id == idModeloContrato);
+    return modeloContratofound;
+}
+function representanteCastilho(CODCOLIGADA, tipoContrato) {
+    var CODCOLIGADA = $("#hiddenCodColigada").val();
+
+    var representantes = [
+        {
+            CODCOLIGADA: 1,
+            assinantes: [
+                {
+                    assinante: "Jerson Godoy Leski Junior",
+                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários"]
+                },
+                {
+                    assinante: "Augusto Cesar de Almeida Pereira de Lyra",
+                    tipos: ["Prestação de Serviços - Valor Total", "Prestação de Serviços por Preço Unitário", "Transporte de Funcionários"]
+                },
+                {
+                    assinante: "Emanuel Mascarenhas Padilha Junior",
+                    tipos: ["Locação de Imóvel - Pessoa Jurídica", "Locação de imóvel - Pessoa Física"]
+                },
+            ]
+        },
+        {
+            CODCOLIGADA: 2,
+            assinantes: [
+                {
+                    assinante: "Jerson Godoy Leski Junior",
+                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários","Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários"]
+                },
+                {
+                    assinante: "Marcio Rinaldo Guinossi",
+                    tipos: ["Prestação de Serviços", "Transporte de Funcionários", "Locação de Imóvel"]
+                }
+            ]
+        },
+        {
+            CODCOLIGADA: 5,
+            assinantes: [
+                {
+                    assinante: "Jerson Godoy Leski Junior",
+                    tipos: ["Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários"]
+                },
+                {
+                    assinante: "Servulo Sanches Correa",
+                    tipos: ["Prestação de Serviços", "Transporte de Funcionários", "Locação de Imóvel"]
+                }
+            ]
+        },
+        {
+            CODCOLIGADA: 12,
+            assinantes: [
+                {
+                    assinante: "Mario Rogers de Castilho",
+                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários","Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários", "Prestação de Serviços", "Transporte de Funcionários", "Locação de Imóvel"]
+                }
+            ]
+        },
+        {
+            CODCOLIGADA: 13,
+            assinantes: [
+                {
+                    assinante: "Mario Rogers de Castilho",
+                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários","Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários", "Prestação de Serviços", "Transporte de Funcionários", "Locação de Imóvel"]
+                }
+            ]
+        }
+    ];
+
+
+    var coligadaFound = representantes.find(e => e.CODCOLIGADA == CODCOLIGADA);
+    if (coligadaFound) {
+        var tipoContratoFound = coligadaFound.assinantes.find(e => e.tipos.includes(tipoContrato))
+        if (tipoContratoFound) {
+            return tipoContratoFound.assinante;
+        }
+    }
+}
 
 
 // Lista de Documentos na pasta do Contrato
@@ -2290,9 +2498,9 @@ async function buscaDocumentosDoContrato() {
         }
     } catch (error) {
         FLUIGC.toast({
-            title:"Erro ao buscar documentos do Contrato: ",
-            message:error,
-            type:"warning"
+            title: "Erro ao buscar documentos do Contrato: ",
+            message: error,
+            type: "warning"
         })
         throw error;
     }
@@ -2307,15 +2515,184 @@ if ($("#tpCont").val() == "3" || $("#tpCont").val() == "4") {
         // Busca previamente a pasta de Contratos da Obra, para otimizar a busca dos Documentos pros Aditivos e Rescisões
         idPastaDeContratos = await buscaPastaDeContratosDaObra();
         listContratosPasta = await buscaDocumentosDaPasta(idPastaDeContratos);
-    }, 500);    
+    }, 500);
 }
 
 
+async function buscaOuCriaPastaDoContrato() {
+    try {
+        var CODCOLIGADA = $("#hiddenCodColigada").val();
+        var CODCCUSTO = $("#codigoObra").val();
+        var idRegional = CODCCUSTO[2];
+        var CODIGOCONTRATO = $("#CodigoContrato").val();
+        if (!CODIGOCONTRATO) {
+            CODIGOCONTRATO = $("#codContrato").val();
+        }
 
+        if (!CODIGOCONTRATO) {
+            const regex = /^\d+\.\d+\.\d+-\d+\/\d+ - \d+$/;//Verifica se o input está no pattern
+            CODIGOCONTRATO = prompt("Código do Contrato não encontrado, favor informar o código no Padrão (1.2.023-284/25 - 17752)");
+            if (!regex.test(CODIGOCONTRATO)) {
+                throw "O Código informado não bate com o Padrão esperado.";
+            }
+        }
+
+        if (!CODCOLIGADA || !CODCCUSTO || !idRegional || !CODIGOCONTRATO) {
+            throw "Não foi possivel encontrar os campos (CODCOLIGADA, CODCCUSTO, idRegional, CODIGOCONTRATO)";
+        }
+
+        var ds = DatasetFactory.getDataset("SincronizaPastasDasObras", null,[
+            DatasetFactory.createConstraint("CODCOLIGADA", CODCOLIGADA,CODCOLIGADA,ConstraintType.MUST),
+            DatasetFactory.createConstraint("CODCCUSTO", CODCCUSTO,CODCCUSTO,ConstraintType.MUST)
+        ],null)
+
+        if (ds.values.length==0) {
+            throw "Não foi possível encontrar a Pasta da Obra no Dataset sincronizado, favor entrar em contato com o Administrador do Sistema.";
+        }
+   
+        var idPastaObra = ds.values[0].DOCUMENTID;
+
+        var pastasDaObra = await buscaDocumentosDaPasta(idPastaObra);
+        var pastaPlanejamentoFound = pastasDaObra.find(e => e.documentDescription == "Acompanhamento e Planejamento da Obra");
+        if (!pastaPlanejamentoFound) {
+            throw `Não foi possível encontrar a Pasta "Acompanhamento e Planejamento da Obra" nas Pasta da Obra`;
+        }
+
+        var pastasPlanejamento = await buscaDocumentosDaPasta(pastaPlanejamentoFound.documentId)
+        var pastasContratosFound = pastasPlanejamento.find(e => e.documentDescription == "Contratos");
+        if (!pastasContratosFound) {
+            throw `Não foi possível encontrar a Pasta "Contratos" na Pasta "Acompanhamento e Planejamento da Obra"`;
+        }
+
+        var pastasContratos = await buscaDocumentosDaPasta(pastasContratosFound.documentId)
+        var pastasContratoObraFound = pastasContratos.find(e => e.documentDescription == "Contratos Obras");
+        if (!pastasContratoObraFound) {
+            throw `Não foi possível encontrar a Pasta "Contratos Obras" na Pasta "Contratos"`; 
+        }
+
+        var pastaContratosObra = await buscaDocumentosDaPasta(pastasContratoObraFound.documentId);
+        var pastaDoContratoFound = pastaContratosObra.find(e => verificaSePastaDoContratoIgualCodigoContrato(e.documentDescription, CODIGOCONTRATO));
+
+
+        if (pastaDoContratoFound) {
+            //Se pasta com o Código do Contrato encontrada, retorna o ID da pasta
+            return pastaDoContratoFound.id;
+        } else {
+            // Se pasta não encontrada, cria a pasta
+            var retorno = await promiseCriaPasta(pastasContratoObraFound.documentId, geraNomePasta(CODIGOCONTRATO));
+            return  retorno.documentId;
+        }
+
+    } catch (error) {
+        console.error(error);
+        throw error;   
+    }
+}
+
+function geraNomePasta(CODIGOCONTRATO) {
+    var fornecedor = $("#Fornecedor").val();
+    var nome = null;
+    var idContrato = $("#idContrato").val()
+    if (idContrato == 1) {
+        nome = "LocaçãoEquipamentosS.M.O.";
+    } else if (idContrato == 2) {
+        nome = "LocaçãoImóvelPessoaFísica";
+    } else if (idContrato == 3) {
+        nome = "LocaçãoImóvelPessoaJurídica";
+    } else if (idContrato == 4) {
+        nome = "LocaçãoEquipamentosC.M.O.";
+    } else if (idContrato == 5) {
+        nome = "LocaçãoDeContainers";
+    } else if (idContrato == 6) {
+        nome = "RescisãoDeLocaçãoDeEquipamentosS/M.O.";
+    } else if (idContrato == 7) {
+        nome = "RescisãoDeLocaçãoDeEquipamentosC/M.O.";
+    } else if (idContrato == 8) {
+        nome = "RescisãoDeLocaçãoDeImóvel";
+    } else if (idContrato == 9) {
+        nome = "RescisãoDePrestaçãoDeServiço";
+    } else if (idContrato == 10) {
+        nome = "RescisãoDeTransporteDeMateriais";
+    } else if (idContrato == 11) {
+        nome = "TransporteDeMateriaisPrecoFixo";
+    } else if (idContrato == 12) {
+        nome = "TransporteDeMateriais";
+    } else if (idContrato == 13) {
+        nome = "PrestaçãoDeServiçosPorPreçoUnitário-ComRetenção-ComGFIP";
+    } else if (idContrato == 14) {
+        nome = "PrestaçãoDeServiçosPorPreçoUnitário-ComRetenção-SemGFIP";
+    } else if (idContrato == 15) {
+        nome = "PrestaçãoDeServiços-ValorTotal-ComRetenção-ComGFIP";
+    } else if (idContrato == 16) {
+        nome = "PrestaçãoDeServiços-ValorTotal-ComRetenção-SemGFIP";
+    } else if (idContrato == 17) {
+        nome = "LocaçãoDeSanitários";
+    } else if (idContrato == 18) {
+        nome = "TransporteDeFuncionários";
+    } else if (idContrato == 19) {
+        nome = "AditivoLocaçãoDeEquipamentos";
+    } else if (idContrato == 20) {
+        nome = "AditivoLocaçãoDeImóvel";
+    } else if (idContrato == 21) {
+        nome = "AditivoLocaçãoDeImóvelComReajuste";
+    } else if (idContrato == 22) {
+        nome = "AditivoPrestaçãoDeServiços";
+    } else if (idContrato == 23) {
+        nome = "AditivoTransporteDeFuncionários";
+    } else if (idContrato == 24) {
+        nome = "AditivoLocaçãoDeImóvel";
+    } else if (idContrato == 25) {
+        nome = "RescisãoDeLocaçãoDeImóvel";
+    } else if (idContrato == 26) {
+        nome = "FerroviasLocacaoEquipamentosS.M.O";
+    } else if (idContrato == 27) {
+        nome = "FerroviasLocacaoEquipamentosC.M.O";
+    } else if (idContrato == 28) {
+        nome = "AditivoLocaçãoDeImóvelPJ";
+    } else if (idContrato == 29) {
+        nome = "AditivoTransporteMateriais";
+    }
+    else {
+        console.error("geraNomePasta idContrato invalido");
+        return false;
+    }
+
+    return CODIGOCONTRATO + " - " + nome + " - " + fornecedor;
+}
+
+function verificaSePastaDoContratoIgualCodigoContrato(nomePasta, codigoContrato) {
+    codigoContrato = codigoContrato.split(" - ")[0];
+    var codigoContratoNoNomeDaPasta = nomePasta.substring(0, 14);
+
+    if (codigoContratoNoNomeDaPasta.replace("_", "/") == codigoContrato) {
+        return true;
+    }
+    else if (codigoContratoNoNomeDaPasta == codigoContrato) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function promiseCriaPasta(parentId, nome) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            method: "POST",
+            url: "/content-management/api/v2/folders/" + parentId,
+            data: JSON.stringify({ "alias": nome }),
+            contentType: "application/json",
+            success: retorno => {
+                resolve(retorno);
+            },
+            error: e => reject(e)
+        });
+    });
+}
 
 
 // Utils
-function getEnviroment(){
+function getEnviroment() {
     var url = parent.WCMAPI.getServerURL();
     if (url == 'http://fluig.castilho.com.br:1010') {
         return "PRODUCAO";
@@ -2323,7 +2700,7 @@ function getEnviroment(){
     else if (url == 'http://homologacao.castilho.com.br:2020') {
         return "HOMOLOGACAO";
     }
-    else{
+    else {
         return "HOMOLOGACAO";
     }
 }
