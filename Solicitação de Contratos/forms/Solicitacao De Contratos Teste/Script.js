@@ -126,7 +126,7 @@ $(document).ready(function () {
                     if (values.TIPOCONTRATO == "Prestação de Serviços" || values.TIPOCONTRATO == "Prestação de Serviços - Sub-Empreiteiros" || values.TIPOCONTRATO == "Prestação de Serviços - Vigilância" || values.TIPOCONTRATO == "Prestação de Serviços - Sub/Retenção") {
                         if ($(this).hasClass("checkboxSelecionaAditivo")) {
                             $("#tpCont").val(4);
-                            //visualizarContrato(22847).then(() => {//Homolog
+                            // visualizarContrato(22847).then(() => {//Homolog
                             // visualizarContrato(514783).then(() => {//Prod
                             // visualizarContrato(5785).then(() => {//Develop
                             visualizarContrato(973993).then(() => {//Prod Novo Modelo
@@ -136,7 +136,7 @@ $(document).ready(function () {
                         }
                         else {
                             $("#tpCont").val(3);
-                            //visualizarContrato(22866).then(() => {//Homolog
+                            // visualizarContrato(22866).then(() => {//Homolog
                             // visualizarContrato(514796).then(() => {//Prod
                             // visualizarContrato(5773).then(() => {//Develop
                             visualizarContrato(974021).then(() => {//Prod Novo Modelo
@@ -147,7 +147,7 @@ $(document).ready(function () {
                     else if (values.TIPOCONTRATO == "Locação de Imóvel") {
                         if ($(this).hasClass("checkboxSelecionaAditivo")) {
                             $("#tpCont").val(4);
-                            //visualizarContrato(22850).then(() => {//Homolog
+                            // visualizarContrato(22850).then(() => {//Homolog
                             // visualizarContrato(514784).then(() => {//Prod
                             // visualizarContrato(5781).then(() => {//Develop
                             visualizarContrato(973992).then(() => {//Prod Novo Modelo
@@ -368,6 +368,8 @@ $(document).ready(function () {
         else if ($("#tpCont").val() == 2) {
             var div =
                 "<div>\
+                    <div style='display:inline-block; margin-right:10px;'><label>Coligada:</label> " + $("#hiddenCodColigada").val() + "</div>\
+                    <div style='display:inline-block; margin-right:10px;'><label>Centro de Custo:</label> " + $("#hiddenCODGCCUSTO").val() + "</div>\
                     <div style='display:inline-block; margin-right:10px;'><label>Fornecedor:</label> " + $("#Fornecedor").val() + "</div>\
                     <div style='display:inline-block; margin-right:10px;'><label>CPF/CNPJ:</label> " + $("#FornecedorCNPJ").val() + "</div>\
                 </div>";
@@ -622,6 +624,16 @@ $(document).ready(function () {
                 $("#atabCamposRM").closest("li").show();
             }
 
+            var isAssinaturaEletronica = $(`[name="radioOptAssinatura"]:checked`).val() == "Eletronica";
+            if (isAssinaturaEletronica) {
+                var modeloContratofound = dadosDoModeloDoContrato();
+                if (modeloContratofound) {
+                    var CODCOLIGADA = $("#hiddenCodColigada").val();
+                    var rep = representanteCastilho(CODCOLIGADA, modeloContratofound.nome);
+                    $("#selectAssinanteCastilho").val(rep).change();
+                }
+            }
+
             // CarregaListaAssinantes();
             showPanelAssinaturas();
             if ($("#tpCont").val() == 1 || $("#tpCont").val() == 2) {
@@ -646,31 +658,31 @@ $(document).ready(function () {
                 }
             });
 
-            if ($("#hiddenCodColigada").val() == "2") {
-                $("#selectAssinanteCastilho").val("Marcio Rinaldo Guinossi");
-            } else if ($("#hiddenCodColigada").val() == "6") {
-                $("#selectAssinanteCastilho").val("Augusto Lyra");
-            } else if ($("#hiddenCodColigada").val() == "5") {
-                $("#selectAssinanteCastilho").val("Servulo Sanches Correa");
-            } else if ($("#hiddenCodColigada").val() == "8") {
-                $("#selectAssinanteCastilho").val("Augusto Lyra");
-            } else if ($("#hiddenCodColigada").val() == "9") {
-            } else if ($("#hiddenCodColigada").val() == "10") {
-            } else if ($("#hiddenCodColigada").val() == "12") {
-            	//$("#selectAssinanteCastilho").val("Jerson Leski Jr");
-            	$("#selectAssinanteCastilho").val("Mario Rogers de Castilho");
-            } else {
-                if ($("#idContrato").val() == 3 || $("#idContrato").val() == 2) {//Contratos Loc. Imovel
-                    $("#selectAssinanteCastilho").val("Emanuel Mascarenhas Padilha Junior");
-                } else {
-                    if ($("#hiddenCODGCCUSTO").val().split(".")[1] == "3") {//Contratos da Reg. Norte 
-                        $("#selectAssinanteCastilho").val("Marcio Rinaldo Guinossi");
-                    }
-                    else {
-                        $("#selectAssinanteCastilho").val("Augusto Lyra");
-                    }
-                }
-            }
+            // if ($("#hiddenCodColigada").val() == "2") {
+            //     $("#selectAssinanteCastilho").val("Marcio Rinaldo Guinossi");
+            // } else if ($("#hiddenCodColigada").val() == "6") {
+            //     $("#selectAssinanteCastilho").val("Augusto Lyra");
+            // } else if ($("#hiddenCodColigada").val() == "5") {
+            //     $("#selectAssinanteCastilho").val("Servulo Sanches Correa");
+            // } else if ($("#hiddenCodColigada").val() == "8") {
+            //     $("#selectAssinanteCastilho").val("Augusto Lyra");
+            // } else if ($("#hiddenCodColigada").val() == "9") {
+            // } else if ($("#hiddenCodColigada").val() == "10") {
+            // } else if ($("#hiddenCodColigada").val() == "12") {
+            // 	//$("#selectAssinanteCastilho").val("Jerson Leski Jr");
+            // 	$("#selectAssinanteCastilho").val("Mario Rogers de Castilho");
+            // } else {
+            //     if ($("#idContrato").val() == 3 || $("#idContrato").val() == 2) {//Contratos Loc. Imovel
+            //         $("#selectAssinanteCastilho").val("Emanuel Mascarenhas Padilha Junior");
+            //     } else {
+            //         if ($("#hiddenCODGCCUSTO").val().split(".")[1] == "3") {//Contratos da Reg. Norte 
+            //             $("#selectAssinanteCastilho").val("Marcio Rinaldo Guinossi");
+            //         }
+            //         else {
+            //             $("#selectAssinanteCastilho").val("Augusto Lyra");
+            //         }
+            //     }
+            // }
         } else if (atividade == 21) {
             $("#decisaoContRetornoObra, #decisaoContEncerramento, #decisaoContCorrecao").closest("div").hide();
             $("#atabAssinatura").closest("li").show();
@@ -1140,7 +1152,7 @@ $(document).ready(function () {
         switch ($(this).text()) {
             case "Locação de Equipamento":
                 $("#modeloContrato").val("Locação de Equipamento");
-                //visualizarContrato(22871).then(() => {//Homolog
+                // visualizarContrato(22871).then(() => {//Homolog
                 visualizarContrato(1297823).then(() => {//Prod
                     $("#divAnexosEquipamento, #divAnexosAdministrador").show();
                     $(".divOptLocEquipamento").show();
@@ -1150,14 +1162,14 @@ $(document).ready(function () {
                 break;
             case "Locação de Imóvel":
                 $("#modeloContrato").val("Locação de Imóvel");
-                //visualizarContrato(22870).then(() => {//Homolog
+                // visualizarContrato(22870).then(() => {//Homolog
                 visualizarContrato(514801).then(() => {//Prod
                     $("#divAnexosImovel").show();
                 });
                 break;
             case "Prestação de Serviços":
                 $("#modeloContrato").val("Prestação de Serviços");
-                //visualizarContrato(22877).then(() => {//Homolog
+                // visualizarContrato(22877).then(() => {//Homolog
                 visualizarContrato(1197658).then(() => {//Prod //old 514805
                     $("#divAnexosImovel").show();
                     iniciarContratoServico();
@@ -1217,12 +1229,12 @@ $(document).ready(function () {
     });
     $("#selectOptLocImovel").on("change", function () {
         if ($(this).val() == "Pessoa Física") {
-            //visualizarContrato(22870).then(() => {//Homolog
+            // visualizarContrato(22870).then(() => {//Homolog
             visualizarContrato(514801).then(() => {//Prod
             });
         }
         else if ($(this).val() == "Pessoa Jurídica") {
-            //visualizarContrato(22870).then(() => {//Homolog
+            // visualizarContrato(22868).then(() => {//Homolog
             visualizarContrato(514802).then(() => {//Prod
             });
         }
