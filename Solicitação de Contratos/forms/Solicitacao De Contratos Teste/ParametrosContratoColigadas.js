@@ -110,7 +110,7 @@ jsonClausulasColigadas = [
         coligada: "13",
         nome: "EPYA INFRAESTRUTURA FERROVIÁRIA LTDA",
         nomeSimplificado: "EPYA",
-        logo: "<div style='text-align: right;'><img src='epyaLogo.jpg' id='EpyaLogo' alt='Dromos' style='margin-right: 8%; height: 54px;' class='coligada1'></div><br>",
+        logo: "<div style='text-align: right;'><img src='epyaLogo.jpg' id='EpyaLogo' alt='Epya' style='margin-right: 8%; height: 54px;' class='coligada1'></div><br>",
         clausula: "<b>EPYA INFRAESTRUTURA FERROVIÁRIA LTDA</b>, pessoa jurídica de direito privado, com sede na Rua Gomes de Carvalho, nº 1507 - Conj 21B, bairro Vila Olimpia, na cidade de São Paulo, estado de São Paulo, inscrita no CNPJ/MF sob o <span style='white-space: nowrap'>nº 58.532.628/0001-18,</span>",
         rodape:"Epya Infraestrutura Ferroviária LTDA."
     }
@@ -170,9 +170,17 @@ jsonClausulasColigadasAditivo = [
         coligada: "12",
         nome: "DROMOS INFRAESTRUTURA LTDA",
         logo: "<div style='text-align: right;'><img src='Dromos.png' id='DromosLogo' alt='Dromos' style='margin-right: 8%; height: 54px;' class='coligada1'></div><br>",
-        clausula: "<b>DROMOS INFRAESTRUTURA LTDA</b>, pessoa jurídica de direito privado, com sede na Avenida Cândido de Abreu, nº 70 - Térreo Sala 01, bairro Centro Cívico, na cidade de Curitiba, estado do Paraná, inscrita no CNPJ/MF sob o <span style='white-space: nowrap'>nº 55.225.761/0001-33.</span>",
+        clausula: "<b>DROMOS INFRAESTRUTURA LTDA</b>, pessoa jurídica de direito privado, com sede na Rua Gomes de Carvalho, nº 1507 - Conj 21B, bairro Vila Olimpia, na cidade de São Paulo, estado de São Paulo, inscrita no CNPJ/MF sob o <span style='white-space: nowrap'>nº 55.225.761/0001-33,</span>",
         rodape:"Dromos Infraestrutura Ltda.",
         CNPJ: "55.225.761/0001-33"
+    },
+    {
+        coligada: "13",
+        nome: "EPYA INFRAESTRUTURA FERROVIÁRIA LTDA",
+        logo: "<div style='text-align: right;'><img src='epyaLogo.jpg' id='EpyaLogo' alt='Epya' style='margin-right: 8%; height: 54px;' class='coligada1'></div><br>",
+        clausula: "<b>EPYA INFRAESTRUTURA FERROVIÁRIA LTDA</b>, pessoa jurídica de direito privado, com sede na Rua Gomes de Carvalho, nº 1507 - Conj 21B, bairro Vila Olimpia, na cidade de São Paulo, estado de São Paulo, inscrita no CNPJ/MF sob o <span style='white-space: nowrap'>nº 58.532.628/0001-18,</span>",
+        rodape:"Epya Infraestrutura Ferroviária LTDA.",
+        CNPJ: "58.532.628/0001-18"
     },
 ]
 
@@ -230,8 +238,16 @@ jsonClausulasColigadasRescisao = [
         coligada: "12",
         nome: "DROMOS INFRAESTRUTURA LTDA",
         logo: "<div style='text-align: right;'><img src='Dromos.png' id='DromosLogo' alt='Dromos' style='margin-right: 8%; height: 54px;' class='coligada1'></div><br>",
-        clausula: "<b>DROMOS INFRAESTRUTURA LTDA</b>, pessoa jurídica de direito privado, com sede na Avenida Sete de Setembro, nº 4476 - 12º andar, bairro Centro Cívico, na cidade de Curitiba, estado do Paraná, inscrita no CNPJ/MF sob o <span style='white-space: nowrap'>nº 55.225.761/0001-33.</span>",
+        clausula: "<b>DROMOS INFRAESTRUTURA LTDA</b>, pessoa jurídica de direito privado, com sede na Rua Gomes de Carvalho, nº 1507 - Conj 21B, bairro Vila Olimpia, na cidade de São Paulo, estado de São Paulo, inscrita no CNPJ/MF sob o <span style='white-space: nowrap'>nº 55.225.761/0001-33,</span>",
         rodape:"Dromos Infraestrutura Ltda.",
         CNPJ: "55.225.761/0001-33"
-    }
+    },
+    {
+        coligada: "13",
+        nome: "EPYA INFRAESTRUTURA FERROVIÁRIA LTDA",
+        logo: "<div style='text-align: right;'><img src='epyaLogo.jpg' id='EpyaLogo' alt='Epya' style='margin-right: 8%; height: 54px;' class='coligada1'></div><br>",
+        clausula: "<b>EPYA INFRAESTRUTURA FERROVIÁRIA LTDA</b>, pessoa jurídica de direito privado, com sede na Rua Gomes de Carvalho, nº 1507 - Conj 21B, bairro Vila Olimpia, na cidade de São Paulo, estado de São Paulo, inscrita no CNPJ/MF sob o <span style='white-space: nowrap'>nº 58.532.628/0001-18,</span>",
+        rodape:"Epya Infraestrutura Ferroviária LTDA.",
+        CNPJ: "58.532.628/0001-18"
+    },
 ]
