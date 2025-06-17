@@ -1,31 +1,32 @@
 var ATIVIDADES = {
-    INICIO:7,
-    INICIO_0:0,
-    ENGENHEIRO:9,
-    COORD_OBRAS:23,
-    SUPRIMENTOS:100,
-    SEGURANCA:101,
-    JURIDICO:15,
-    CONTROLADORIA:19,
-    COORD_CONTROLADORIA:21,
-    DIRETORIA:118,
-    ASSINATURA_ELETRONICA:30,
-    ADM_OBRA:32,
-    CONTROLADORIA_AGUARDANDO_RECEBIMENTO:33,
-    CONTROLADORIA_RECOLHE_ASSINATURA:34,
-    OBRA_RECEBE_VIAS_ORIGINAIS:35,
+    INICIO: 7,
+    INICIO_0: 0,
+    ENGENHEIRO: 9,
+    COORD_OBRAS: 23,
+    SUPRIMENTOS: 100,
+    SEGURANCA: 101,
+    JURIDICO: 15,
+    CONTROLADORIA: 19,
+    COORD_CONTROLADORIA: 21,
+    DIRETORIA: 118,
+    ASSINATURA_ELETRONICA: 30,
+    ADM_OBRA: 32,
+    CONTROLADORIA_AGUARDANDO_RECEBIMENTO: 33,
+    CONTROLADORIA_RECOLHE_ASSINATURA: 34,
+    OBRA_RECEBE_VIAS_ORIGINAIS: 35,
 }
 
 
-function beforeTaskSave(colleagueId,nextSequenceId,userList){
-	var contOk = hAPI.getCardValue("decisaoCont");
+function beforeTaskSave(colleagueId, nextSequenceId, userList) {
+    var contOk = hAPI.getCardValue("decisaoCont");
     var tpcont = hAPI.getCardValue("tpCont");
     var contOkSuprimento = hAPI.getCardValue("decisaoContSuprimento") == 1;
     var numProcesso = getValue("WKNumProces");
     var usuarioLogado = getValue("WKUser");
     var comentario = getValue("WKUserComment");
     var coligada = hAPI.getCardValue("codColigada");
-    
+    var IDCNT = hAPI.getCardValue("idCntRm");
+
     //7 -> "inicio"
     //9 -> "engenheiro"
     //15 -> "juridico"
@@ -36,22 +37,27 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
     //32 -> "adm. obra"
     //33 -> "contr. aguard. receb."
     //34 -> "contr. recebe ass."
-	//35 -> "obra recebe vias orig."
+    //35 -> "obra recebe vias orig."
     //118 -> "diretoria"
-    
-    var atv = getValue("WKNumState");
-    log.info("beforeTaskSave ==> "+ numProcesso);
-    log.info("numProcesso ==> "+ numProcesso);
-    log.info("atv ==> "+ atv);
-    log.info("nextSequenceId ==> "+ nextSequenceId);
 
-    log.info("atividadeParalela ==> "+ hAPI.getCardValue("atividadeParalela"));
-    log.info("decisaoCont ==> "+ hAPI.getCardValue("decisaoCont"));
-    log.info("codColigada ==> "+ hAPI.getCardValue("codColigada"));
+    var atv = getValue("WKNumState");
+    log.info("beforeTaskSave ==> " + numProcesso);
+    log.info("numProcesso ==> " + numProcesso);
+    log.info("atv ==> " + atv);
+    log.info("nextSequenceId ==> " + nextSequenceId);
+
+    log.info("atividadeParalela ==> " + hAPI.getCardValue("atividadeParalela"));
+    log.info("decisaoCont ==> " + hAPI.getCardValue("decisaoCont"));
+    log.info("codColigada ==> " + hAPI.getCardValue("codColigada"));
+
+    var tipoContratoCastilho = 1;
+    var tipoContratoForaModelo = 2;
+    var tipoRescisao = 3;
+    var tipoAditivo = 4;
 
     if (atv != nextSequenceId) {
         if (contOk == 1 || atv == 0 || atv == 7 || atv == 34) {
-            if (atv ==  ATIVIDADES.INICIO_0 || atv == ATIVIDADES.INICIO) {
+            if (atv == ATIVIDADES.INICIO_0 || atv == ATIVIDADES.INICIO) {
                 //Atividade inicio
                 if (tpcont == 2) {
                     AnexarDocumento(hAPI.getCardValue("idDocContrato"));
@@ -72,7 +78,7 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
                     atualizaStatusEquipParaEmAndamento();
                 }
                 AnexaDocumentosInicio();
-                hAPI.setCardValue("preenchidoBodyEquipamentos",true);
+                hAPI.setCardValue("preenchidoBodyEquipamentos", true);
             } else if (atv == 79) {
                 //Atividade adm obra
                 //Anexa o arquivo inserido no type=file #myFile
@@ -111,9 +117,11 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
                         exportarContratoProRM();
                     }
 
-
-                    if (tpcont == 3) {
-                        AtualizaStatusContrato("11");
+                    if (tpcont == tipoRescisao) {
+                        AtualizaStatusContratoRescisao("11");
+                    }
+                    if (tpcont == tipoAditivo) {
+                        AtualizaStatusContratoRescisao("05");
                     }
                     AnexaDocumentosInicio();
 
@@ -121,19 +129,19 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
                         atualizaStatusEquipParaEmVigencia();
                     }
                 }
-            } else if (atv == ATIVIDADES.COORD_CONTROLADORIA) { 
-                log.info("contOk ==> "+ contOk);
-                if (contOk == 1 && hAPI.getCardValue("atividadeParalela")!= true && hAPI.getCardValue("atividadeParalela")!= "true") {
-                    log.info("ifOk ==> "+ contOk);
+            } else if (atv == ATIVIDADES.COORD_OBRAS) {
+                log.info("contOk ==> " + contOk);
+                if (contOk == 1 && hAPI.getCardValue("atividadeParalela") != true && hAPI.getCardValue("atividadeParalela") != "true") {
+                    log.info("ifOk ==> " + contOk);
                     if (hAPI.getCardValue("radioOptAssinatura") == "Eletronica") {
-                        log.info("radioOptAssinatura ==> "+ hAPI.getCardValue("radioOptAssinatura"));
+                        log.info("radioOptAssinatura ==> " + hAPI.getCardValue("radioOptAssinatura"));
                         CriaAssinaturaEletronica();
                     }
                 }
-                if (contOk == 1 && (hAPI.getCardValue("atividadeParalela")== true || hAPI.getCardValue("atividadeParalela")== "true") && hAPI.getCardValue("codigoColigada")=="12") {
-                    log.info("ifOk ==> "+ contOk);
+                if (contOk == 1 && (hAPI.getCardValue("atividadeParalela") == true || hAPI.getCardValue("atividadeParalela") == "true") && hAPI.getCardValue("codigoColigada") == "12") {
+                    log.info("ifOk ==> " + contOk);
                     if (hAPI.getCardValue("radioOptAssinatura") == "Eletronica") {
-                        log.info("radioOptAssinatura ==> "+ hAPI.getCardValue("radioOptAssinatura"));
+                        log.info("radioOptAssinatura ==> " + hAPI.getCardValue("radioOptAssinatura"));
                         CriaAssinaturaEletronica();
                     }
                 }
@@ -141,36 +149,40 @@ function beforeTaskSave(colleagueId,nextSequenceId,userList){
                 if (contOk == 1 || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {
                     atualizaStatusEquipParaEmVigencia();
                 }
-                if (tpcont == 3) {
-                    AtualizaStatusContrato("03");
+                if (tpcont == tipoRescisao) {
+                    AtualizaStatusContratoRescisao("03");
                 }
-            }else if (atv == ATIVIDADES.DIRETORIA) {
-                log.info("contOkDiretoria ==> "+ contOk)
+                if ((contOk == 1 || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) && tpcont != tipoRescisao) {
+                    var CODSTACNT_ATIVO = "01";
+                    AtualizaStatusContrato(coligada, IDCNT, CODSTACNT_ATIVO);
+                }
+            } else if (atv == ATIVIDADES.DIRETORIA) {
+                log.info("contOkDiretoria ==> " + contOk)
                 if (contOk == 1) {
-                    log.info("radioOptAssinatura ==> "+ hAPI.getCardValue("radioOptAssinatura"))
+                    log.info("radioOptAssinatura ==> " + hAPI.getCardValue("radioOptAssinatura"))
                     if (hAPI.getCardValue("radioOptAssinatura") == "Eletronica") {
                         log.info("CriaAssinaturaEletronica ==> ")
                         CriaAssinaturaEletronica();
                     }
                 }
             }
-        } else if (contOkSuprimento && atv == ATIVIDADES.SUPRIMENTOS){
-                cadastrarSuprimento();
+        } else if (contOkSuprimento && atv == ATIVIDADES.SUPRIMENTOS) {
+            cadastrarSuprimento();
         } else {
             //Verifica se caso a solicitação sejá enviada para correção um complemento informando a alteração foi adicionado
-            if (atv == ATIVIDADES.ENGENHEIRO || 
-                atv == 10 || 
-                ATIVIDADES.CONTROLADORIA == 19 || 
-                atv == ATIVIDADES.JURIDICO || 
-                atv == 122 || 
-                atv == 64 || 
-                atv == 17 || 
-                atv == ATIVIDADES.COORD_CONTROLADORIA || 
-                atv == ATIVIDADES.COORD_OBRAS || 
-                atv == 25 || 
-                atv == 27 || 
-                atv == 177 || 
-                atv == ATIVIDADES.ASSINATURA_ELETRONICA || 
+            if (atv == ATIVIDADES.ENGENHEIRO ||
+                atv == 10 ||
+                ATIVIDADES.CONTROLADORIA == 19 ||
+                atv == ATIVIDADES.JURIDICO ||
+                atv == 122 ||
+                atv == 64 ||
+                atv == 17 ||
+                atv == ATIVIDADES.COORD_CONTROLADORIA ||
+                atv == ATIVIDADES.COORD_OBRAS ||
+                atv == 25 ||
+                atv == 27 ||
+                atv == 177 ||
+                atv == ATIVIDADES.ASSINATURA_ELETRONICA ||
                 atv == ATIVIDADES.DIRETORIA) {
                 // && (contOk == 2 || contOk == 3))
                 if (comentario == "") {
@@ -194,32 +206,59 @@ function AnexaDocumentosInicio() {
     }
 
     if (hAPI.getCardValue("idDocCNPJ") != "" && hAPI.getCardValue("idDocCNPJ") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocCNPJ"));
+        var ids = hAPI.getCardValue("idDocCNPJ").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocTermoQuitacao") != "" && hAPI.getCardValue("idDocTermoQuitacao") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocTermoQuitacao"));
+        var ids = hAPI.getCardValue("idDocTermoQuitacao").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
 
     if (hAPI.getCardValue("idDocLaudo") != "" && hAPI.getCardValue("idDocLaudo") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocLaudo"));
+        var ids = hAPI.getCardValue("idDocLaudo").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocQSA") != "" && hAPI.getCardValue("idDocQSA") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocQSA"));
+        var ids = hAPI.getCardValue("idDocQSA").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocFormTributacao") != "" && hAPI.getCardValue("idDocFormTributacao") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocFormTributacao"));
+        var ids = hAPI.getCardValue("idDocFormTributacao").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocNF") != "" && hAPI.getCardValue("idDocNF") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocNF"));
+        var ids = hAPI.getCardValue("idDocNF").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocCPF") != "" && hAPI.getCardValue("idDocCPF") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocCPF"));
+        var ids = hAPI.getCardValue("idDocCPF").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocRG") != "" && hAPI.getCardValue("idDocRG") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocRG"));
+        var ids = hAPI.getCardValue("idDocRG").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocCNH") != "" && hAPI.getCardValue("idDocCNH") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocCNH"));
+        var ids = hAPI.getCardValue("idDocCNH").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocCertidoes") != "" && hAPI.getCardValue("idDocCertidoes") != null) {
         var ids = hAPI.getCardValue("idDocCertidoes").split(",");
@@ -229,10 +268,16 @@ function AnexaDocumentosInicio() {
     }
     //Novos anexos Prestacao Servico
     if (hAPI.getCardValue("idDocPropostaComercial") != "" && hAPI.getCardValue("idDocPropostaComercial") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocPropostaComercial"));
+        var ids = hAPI.getCardValue("idDocPropostaComercial").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocRegularidadeFGTS") != "" && hAPI.getCardValue("idDocRegularidadeFGTS") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocRegularidadeFGTS"));
+        var ids = hAPI.getCardValue("idDocRegularidadeFGTS").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocCNDs") != "" && hAPI.getCardValue("idDocCNDs") != null) {
         var ids = hAPI.getCardValue("idDocCNDs").split(",");
@@ -247,10 +292,16 @@ function AnexaDocumentosInicio() {
         }
     }
     if (hAPI.getCardValue("idDocCRLV") != "" && hAPI.getCardValue("idDocCRLV") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocCRLV"));
+        var ids = hAPI.getCardValue("idDocCRLV").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocTermoDeImovel") != "" && hAPI.getCardValue("idDocTermoDeImovel") != null) {
-        AnexarDocumento(hAPI.getCardValue("idDocTermoDeImovel"));
+        var ids = hAPI.getCardValue("idDocTermoDeImovel").split(",");
+        for (var i = 0; i < ids.length; i++) {
+            AnexarDocumento(ids[i]);
+        }
     }
     if (hAPI.getCardValue("idDocOutros") != "" && hAPI.getCardValue("idDocOutros") != null) {
         var ids = hAPI.getCardValue("idDocOutros").split(",");
@@ -313,7 +364,7 @@ function CriaAssinaturaEletronica() {
                 var versaoArquivo = doc.getVersion();
                 var NomeArquivo = doc.getDocumentDescription();
                 var CodRemetente = hAPI.getCardValue("solicitante");
-                
+
                 var ds = DatasetFactory.getDataset("ds_auxiliar_wesign", null, [
                     DatasetFactory.createConstraint("nmArquivo", NomeArquivo, NomeArquivo, ConstraintType.MUST),
                     DatasetFactory.createConstraint("codArquivo", IdArquivo, IdArquivo, ConstraintType.MUST),
@@ -361,34 +412,34 @@ function cadastrarEquipamentos() {
     var sanitarios = hAPI.getCardValue("novosSanitarios");
     var servicos = hAPI.getCardValue("novosServicos");
 
-    if (containers != null && containers != ""){
+    if (containers != null && containers != "") {
         var containersCadastrados = hAPI.getCardValue("containerCadastrados");
-        if (containersCadastrados == null || containersCadastrados == ""){
+        if (containersCadastrados == null || containersCadastrados == "") {
             containersCadastrados = saveEquips(JSON.parse(containers));
-            hAPI.setCardValue("containerCadastrados",JSONUtil.toJSON(containersCadastrados));
+            hAPI.setCardValue("containerCadastrados", JSONUtil.toJSON(containersCadastrados));
         }
-    } else if (sanitarios != null && sanitarios != ""){
+    } else if (sanitarios != null && sanitarios != "") {
         var sanitariosCadastrados = hAPI.getCardValue("sanitariosCadastrados");
-        if (sanitariosCadastrados == null || sanitariosCadastrados == ""){
+        if (sanitariosCadastrados == null || sanitariosCadastrados == "") {
             sanitariosCadastrados = saveEquips(JSON.parse(sanitarios));
-            hAPI.setCardValue("sanitariosCadastrados",JSONUtil.toJSON(sanitariosCadastrados));
+            hAPI.setCardValue("sanitariosCadastrados", JSONUtil.toJSON(sanitariosCadastrados));
         }
-    } else if (servicos != null && servicos != ""){
+    } else if (servicos != null && servicos != "") {
         var servicosCadastrados = hAPI.getCardValue("servicosCadastrados");
-        if (servicosCadastrados == null || servicosCadastrados == ""){
+        if (servicosCadastrados == null || servicosCadastrados == "") {
             servicosCadastrados = saveEquips(JSON.parse(servicos));
-            hAPI.setCardValue("servicosCadastrados",JSONUtil.toJSON(servicosCadastrados));
+            hAPI.setCardValue("servicosCadastrados", JSONUtil.toJSON(servicosCadastrados));
         }
     }
 }
 
 function cadastrarSuprimento() {
     var equipamentos = hAPI.getCardValue("objetoEquipamentos");
-    if (equipamentos != null && equipamentos != ""){
+    if (equipamentos != null && equipamentos != "") {
         equipamentos = JSON.parse(equipamentos);
         var itensCadastrados = [];
 
-        for (var i = 0; i < equipamentos.length;i++) {
+        for (var i = 0; i < equipamentos.length; i++) {
             var equip = equipamentos[i];
             var c1 = DatasetFactory.createConstraint("OPERACAO", "INSERTSUPRIMENTO", "INSERTSUPRIMENTO", ConstraintType.MUST);
             var c2 = DatasetFactory.createConstraint("JSONEQUIPAMENTO", JSONUtil.toJSON(equip), JSONUtil.toJSON(equip), ConstraintType.MUST);
@@ -400,14 +451,14 @@ function cadastrarSuprimento() {
 
 function saveEquips(equipamentos) {
     var itensCadastrados = [];
-    for (var i = 0; i < equipamentos.length;i++) {
+    for (var i = 0; i < equipamentos.length; i++) {
         var equip = equipamentos[i];
         var c1 = DatasetFactory.createConstraint("OPERACAO", "INSERT", "INSERT", ConstraintType.MUST);
         var c2 = DatasetFactory.createConstraint("JSONEQUIPAMENTO", JSONUtil.toJSON(equip), JSONUtil.toJSON(equip), ConstraintType.MUST);
         var ds = DatasetFactory.getDataset("CadastroDeEquipamentos", null, [c1, c2], null);
         itensCadastrados.push(ds);
     }
-    return itensCadastrados;           
+    return itensCadastrados;
 }
 
 function atualizaStatusEquipParaEmAndamento() {
@@ -416,11 +467,11 @@ function atualizaStatusEquipParaEmAndamento() {
     var sanitarios = hAPI.getCardValue("novosSanitarios");
     var servicos = hAPI.getCardValue("novosServicos");
 
-    if (containers != null && containers != ""){
+    if (containers != null && containers != "") {
         json = hAPI.getCardValue("containerCadastrados");
-    } else if (sanitarios != null && sanitarios != ""){
+    } else if (sanitarios != null && sanitarios != "") {
         json = hAPI.getCardValue("sanitariosCadastrados");
-    } else if (servicos != null && servicos != ""){
+    } else if (servicos != null && servicos != "") {
         json = hAPI.getCardValue("servicosCadastrados");
     } else {
         json = hAPI.getCardValue("objetoEquipamentos");
@@ -450,11 +501,11 @@ function atualizaStatusEquipParaEmVigencia() {
     var sanitarios = hAPI.getCardValue("novosSanitarios");
     var servicos = hAPI.getCardValue("novosServicos");
 
-    if (containers != null && containers != ""){
+    if (containers != null && containers != "") {
         json = hAPI.getCardValue("containerCadastrados");
-    } else if (sanitarios != null && sanitarios != ""){
+    } else if (sanitarios != null && sanitarios != "") {
         json = hAPI.getCardValue("sanitariosCadastrados");
-    } else if (servicos != null && servicos != ""){
+    } else if (servicos != null && servicos != "") {
         json = hAPI.getCardValue("servicosCadastrados");
     } else {
         json = hAPI.getCardValue("objetoEquipamentos");
@@ -702,12 +753,12 @@ function exportarContratoProRM() {
     } else if ((diaFaturamento == "" || diaFaturamento == null) && tipoFaturamento == 1) {
         throw "Dia do faturamento inválido!";
     } else {
-    	
-    	// TIPO = Locação de Imóvel
-    	if (tipoContrato == '04') {
-    		tipoPagamento = '001'; // A VISTA
-    	}
-    	
+
+        // TIPO = Locação de Imóvel
+        if (tipoContrato == '04') {
+            tipoPagamento = '001'; // A VISTA
+        }
+
         var xml =
             "<CtrCnt>\
 			    <TCnt>\
@@ -766,7 +817,7 @@ function exportarContratoProRM() {
                     <CODCPGPRAZO>130</CODCPGPRAZO>\
 					<CODRPR>" + representante + "</CODRPR>";
             xml += (diaFaturamento == "" || diaFaturamento == 0 ? "<DIAFATURAMENTO>0</DIAFATURAMENTO>" : "<DIAFATURAMENTO>" + diaFaturamento + "</DIAFATURAMENTO>")
-            xml += "<PRECOFATURAMENTO>" + ValorToFloat(JSONItemContratoRM[i].Valor).toString().replace(".",",") + "</PRECOFATURAMENTO>\
+            xml += "<PRECOFATURAMENTO>" + ValorToFloat(JSONItemContratoRM[i].Valor).toString().replace(".", ",") + "</PRECOFATURAMENTO>\
 					<CODMOEREAJUSTE>R$</CODMOEREAJUSTE>\
 					<CODCOLCFODEST>0</CODCOLCFODEST>\
 					<CODCFODEST>" + codFornecedor + "</CODCFODEST>";
@@ -977,7 +1028,49 @@ function BuscaEmailUsuario(usuario) {
     return ds.getValue(0, "mail");
 }
 
-function AtualizaStatusContrato(CODSTACNT) {
+function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
+    try {
+        if (!CODCOLIGADA || CODCOLIGADA == null || CODCOLIGADA == "") {
+            throw "Necessário informar CODCOLIGA";
+        }
+        if (!IDCNT || IDCNT == null || IDCNT == "") {
+            throw "Necessário informar IDCNT";
+        }
+        if (!CODSTACNT || CODSTACNT == null || CODSTACNT == "") {
+            throw "Necessário informar CODSTACNT";
+        }
+
+        var xml =
+            "<CtrCnt>\
+            <TCnt>\
+                <CODCOLIGADA>" + CODCOLIGADA + "</CODCOLIGADA>\
+                <IDCNT>" + IDCNT + "</IDCNT>\
+                <CODSTACNT>" + CODSTACNT + "</CODSTACNT>\
+            </TCnt>\
+        </CtrCnt>";
+        var contexto = "CODSISTEMA=G;CODCOLIGADA=" + CODCOLIGADA + ";CODUSUARIO=fluig";
+
+        var retorno = DatasetFactory.getDataset("InsereContratoRM", null, [
+            DatasetFactory.createConstraint("xml", xml, xml, ConstraintType.MUST),
+            DatasetFactory.createConstraint("contexto", contexto, contexto, ConstraintType.MUST),
+            DatasetFactory.createConstraint("idContrato", IDCNT, IDCNT, ConstraintType.MUST),
+            DatasetFactory.createConstraint("coligada", CODCOLIGADA, CODCOLIGADA, ConstraintType.MUST),
+        ], null);
+        if (!retorno || retorno == "" || retorno == null) {
+            throw "Houve um erro na comunicação com o webservice. Tente novamente!";
+        } else {
+            if (retorno.values[0][0] == "false") {
+                throw "Erro ao gerar contrato. Favor entrar em contato com o administrador do sistema. Mensagem: " + retorno.values[0][1];
+            } else if (retorno.values[0][0] == "true") {
+                hAPI.setCardValue("idCntRm", retorno.values[0][2]);
+            }
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+function AtualizaStatusContratoRescisao(CODSTACNT) {
     var JSONContratoPrincipal = hAPI.getCardValue("JSONContratoPrincipal");
 
     if (JSONContratoPrincipal != "") {
