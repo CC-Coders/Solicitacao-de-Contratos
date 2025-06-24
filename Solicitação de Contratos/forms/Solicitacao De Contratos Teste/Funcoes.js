@@ -2576,11 +2576,11 @@ async function buscaOuCriaPastaDoContrato() {
 
         if (pastaDoContratoFound) {
             //Se pasta com o Código do Contrato encontrada, retorna o ID da pasta
-            return pastaDoContratoFound.id;
+            return pastaDoContratoFound.id ? pastaDoContratoFound.id : pastaDoContratoFound.documentId;
         } else {
             // Se pasta não encontrada, cria a pasta
             var retorno = await promiseCriaPasta(pastasContratoObraFound.documentId, geraNomePasta(CODIGOCONTRATO));
-            return  retorno.documentId;
+            return  retorno.documentId ? retorno.documentId : retorno.id;
         }
 
     } catch (error) {
