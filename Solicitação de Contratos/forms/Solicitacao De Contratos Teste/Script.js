@@ -719,6 +719,13 @@ $(document).ready(function () {
             inserirLinhaQuadroStatus();
             $("#decisaoContRetornoJuridico, #decisaoContRetornoObra, #decisaoContEncerramento, #decisaoContRetornoControl").closest("div").hide();
         }
+        else if(atividade == 136){
+            $("#atabAssinatura").closest("li").show();
+            $("#divLinhaQuadroStatus").show();
+            $("#panelOptAssinaturas").hide();
+            inserirLinhaQuadroStatus();
+            $("#decisaoContRetornoJuridico, #decisaoContRetornoObra, #decisaoContEncerramento, #decisaoContRetornoControl").closest("div").hide();
+        }
         else if ([10, 17, 25, 27, 9, 23, 100, 101, 118].includes(parseInt(atividade))) {
             //Atividades aprovação
             $("#decisaoContRetornoJuridico, #decisaoContRetornoObra, #decisaoContEncerramento, #decisaoContRetornoControl").closest("div").hide();

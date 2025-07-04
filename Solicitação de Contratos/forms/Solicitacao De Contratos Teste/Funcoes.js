@@ -2385,11 +2385,12 @@ async function buscaPastaDeContratosDaObra() {
         return idPastaContratosObras.documentId;
 
     } catch (error) {
-        FLUIGC.toast({
-            title: "Erro ao Buscar Documentos do Contrato",
-            message: error,
-            type: "warning"
-        });
+        // Em casos que o usuário não tem permissão na pasta o erro era apresentado, causando confusão para o usuário
+        // FLUIGC.toast({
+        //     title: "Erro ao Buscar Documentos do Contrato",
+        //     message: error,
+        //     type: "warning"
+        // });
         throw error;
     }
 
@@ -2653,8 +2654,11 @@ function geraNomePasta(CODIGOCONTRATO) {
         nome = "AditivoTransporteMateriais";
     }
     else {
-        console.error("geraNomePasta idContrato invalido");
-        return false;
+        if ($("#tipoContrato").find("option:selected").text()) {
+            nome = $("#tipoContrato").find("option:selected").text()
+        }else{
+            nome= "ModeloTerceiro";
+        }
     }
 
     return CODIGOCONTRATO + " - " + nome + " - " + fornecedor;
