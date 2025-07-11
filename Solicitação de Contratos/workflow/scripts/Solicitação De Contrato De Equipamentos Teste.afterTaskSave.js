@@ -2,7 +2,7 @@ function afterTaskSave(colleagueId,nextSequenceId,userList){
     var atividade = getValue("WKNumState");
     var contOk = hAPI.getCardValue("decisaoCont");
 
-    if (atividade == 21) {
+    if (atividade == 23) {
         if (contOk == 1) {
             if (hAPI.getCardValue("radioOptAssinatura") == "Eletronica") {
                 return ExecutaIntegracaoAssinaturaEletronicaWeSign();
