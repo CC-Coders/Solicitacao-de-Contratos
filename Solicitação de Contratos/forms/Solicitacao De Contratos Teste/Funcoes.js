@@ -481,7 +481,7 @@ function CriaDocFluigPromise(idInput, i = 0, parentId) {
 
         if (!parentId) {
             // Se não for informado um parentId cria o documento na Pasta de Anexos
-            parentId =  140518//Prod
+            parentId = 140518//Prod
             // parentId =  17926//Homolog
         }
 
@@ -1227,15 +1227,15 @@ async function EnviaSolicitacao() {
 
                 try {
                     var parentId = await buscaOuCriaPastaDoContrato()
-                    CriaDocFluigPromise("inputFileContrato",0, parentId ).then(() => {
+                    CriaDocFluigPromise("inputFileContrato", 0, parentId).then(() => {
                         loading.hide();
                         $("#workflowActions > button:first-child", window.parent.document).click();
                     });
                 } catch (error) {
                     FLUIGC.toast({
-                        title:"Erro ao Anexar o Documento na pasta: ",
-                        message:error,
-                        type:"danger"
+                        title: "Erro ao Anexar o Documento na pasta: ",
+                        message: error,
+                        type: "danger"
                     });
                     loading.hide();
                     return;
@@ -2157,7 +2157,7 @@ function preencheCamposRM() {
     $("#codFornecedor").val(ds.values[0].CODCFO)
 
 
-   var modeloContratofound = dadosDoModeloDoContrato();
+    var modeloContratofound = dadosDoModeloDoContrato();
     if (modeloContratofound) {
         $("#tipoContrato").val(modeloContratofound.tipoRM);
         var rep = representanteCastilho(CODCOLIGADA, modeloContratofound.nome);
@@ -2198,9 +2198,9 @@ function preencheCamposRM() {
 
 }
 
-function dadosDoModeloDoContrato(){
+function dadosDoModeloDoContrato() {
     var idModeloContrato = $("#idModeloContrato").val();
-     var modelosDeContrato = [
+    var modelosDeContrato = [
         {
             id: 1,
             nome: "LocacaoEquipamentosSMO",
@@ -2286,7 +2286,7 @@ function representanteCastilho(CODCOLIGADA, tipoContrato) {
             assinantes: [
                 {
                     assinante: "Jerson Godoy Leski Junior",
-                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários","Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários"]
+                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários", "Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários"]
                 },
                 {
                     assinante: "Marcio Rinaldo Guinossi",
@@ -2312,7 +2312,7 @@ function representanteCastilho(CODCOLIGADA, tipoContrato) {
             assinantes: [
                 {
                     assinante: "Mario Rogers de Castilho",
-                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários","Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários", "Prestação de Serviços", "Transporte de Funcionários", "Locação de Imóvel"]
+                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários", "Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários", "Prestação de Serviços", "Transporte de Funcionários", "Locação de Imóvel"]
                 }
             ]
         },
@@ -2321,7 +2321,7 @@ function representanteCastilho(CODCOLIGADA, tipoContrato) {
             assinantes: [
                 {
                     assinante: "Mario Rogers de Castilho",
-                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários","Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários", "Prestação de Serviços", "Transporte de Funcionários", "Locação de Imóvel"]
+                    tipos: ["LocacaoEquipamentosSMO", "Locação de equipamentos com mão de obra", "Transporte de materiais - valor fixo", "Transporte de materiais - Fretes e Carretos", "Locação de container", "Locação de Sanitários", "Locação de Equipamentos", "Transporte de Material", "Locação de Container", "Locação de Sanitários", "Prestação de Serviços", "Transporte de Funcionários", "Locação de Imóvel"]
                 }
             ]
         }
@@ -2385,11 +2385,12 @@ async function buscaPastaDeContratosDaObra() {
         return idPastaContratosObras.documentId;
 
     } catch (error) {
-        FLUIGC.toast({
-            title: "Erro ao Buscar Documentos do Contrato",
-            message: error,
-            type: "warning"
-        });
+        // Em casos que o usuário não tem permissão na pasta o erro era apresentado, causando confusão para o usuário
+        // FLUIGC.toast({
+        //     title: "Erro ao Buscar Documentos do Contrato",
+        //     message: error,
+        //     type: "warning"
+        // });
         throw error;
     }
 
@@ -2524,6 +2525,8 @@ async function buscaOuCriaPastaDoContrato() {
         var CODCOLIGADA = $("#hiddenCodColigada").val();
         var CODCCUSTO = $("#codigoObra").val();
         var idRegional = CODCCUSTO[2];
+
+
         var CODIGOCONTRATO = $("#CodigoContrato").val();
         if (!CODIGOCONTRATO) {
             CODIGOCONTRATO = $("#codContrato").val();
@@ -2541,51 +2544,72 @@ async function buscaOuCriaPastaDoContrato() {
             throw "Não foi possivel encontrar os campos (CODCOLIGADA, CODCCUSTO, idRegional, CODIGOCONTRATO)";
         }
 
-        var ds = DatasetFactory.getDataset("SincronizaPastasDasObras", null,[
-            DatasetFactory.createConstraint("CODCOLIGADA", CODCOLIGADA,CODCOLIGADA,ConstraintType.MUST),
-            DatasetFactory.createConstraint("CODCCUSTO", CODCCUSTO,CODCCUSTO,ConstraintType.MUST)
-        ],null)
 
-        if (ds.values.length==0) {
-            throw "Não foi possível encontrar a Pasta da Obra no Dataset sincronizado, favor entrar em contato com o Administrador do Sistema.";
+        var idPastaContratosObras = null;
+
+        if (CODCCUSTO == "1.1.001") {
+            if (CODCOLIGADA == 1) {
+                idPastaContratosObras = 1344311;
+                
+            }else if(CODCOLIGADA == 12){
+                idPastaContratosObras = 1344334;
+            }
+            else{
+                throw "Pasta da Matriz não encontrada para a Coligada: " + CODCOLIGADA;
+            }
         }
-   
-        var idPastaObra = ds.values[0].DOCUMENTID;
+        else if (CODCCUSTO == "1.1.008") {
+            idPastaContratosObras = 51167;
+        } else {
+            var ds = DatasetFactory.getDataset("SincronizaPastasDasObras", null, [
+                DatasetFactory.createConstraint("CODCOLIGADA", CODCOLIGADA, CODCOLIGADA, ConstraintType.MUST),
+                DatasetFactory.createConstraint("CODCCUSTO", CODCCUSTO, CODCCUSTO, ConstraintType.MUST)
+            ], null)
 
-        var pastasDaObra = await buscaDocumentosDaPasta(idPastaObra);
-        var pastaPlanejamentoFound = pastasDaObra.find(e => e.documentDescription == "Acompanhamento e Planejamento da Obra");
-        if (!pastaPlanejamentoFound) {
-            throw `Não foi possível encontrar a Pasta "Acompanhamento e Planejamento da Obra" nas Pasta da Obra`;
+            if (ds.values.length == 0) {
+                throw "Não foi possível encontrar a Pasta da Obra no Dataset sincronizado, favor entrar em contato com o Administrador do Sistema.";
+            }
+
+            var idPastaObra = ds.values[0].DOCUMENTID;
+
+            var pastasDaObra = await buscaDocumentosDaPasta(idPastaObra);
+            var pastaPlanejamentoFound = pastasDaObra.find(e => e.documentDescription == "Acompanhamento e Planejamento da Obra");
+            if (!pastaPlanejamentoFound) {
+                throw `Não foi possível encontrar a Pasta "Acompanhamento e Planejamento da Obra" nas Pasta da Obra`;
+            }
+
+            var pastasPlanejamento = await buscaDocumentosDaPasta(pastaPlanejamentoFound.documentId)
+            var pastasContratosFound = pastasPlanejamento.find(e => e.documentDescription == "Contratos");
+            if (!pastasContratosFound) {
+                throw `Não foi possível encontrar a Pasta "Contratos" na Pasta "Acompanhamento e Planejamento da Obra"`;
+            }
+
+            var pastasContratos = await buscaDocumentosDaPasta(pastasContratosFound.documentId)
+            var pastasContratoObraFound = pastasContratos.find(e => e.documentDescription == "Contratos Obras");
+            if (!pastasContratoObraFound) {
+                throw `Não foi possível encontrar a Pasta "Contratos Obras" na Pasta "Contratos"`;
+            }
+
+            idPastaContratosObras = pastasContratoObraFound.documentId;
         }
 
-        var pastasPlanejamento = await buscaDocumentosDaPasta(pastaPlanejamentoFound.documentId)
-        var pastasContratosFound = pastasPlanejamento.find(e => e.documentDescription == "Contratos");
-        if (!pastasContratosFound) {
-            throw `Não foi possível encontrar a Pasta "Contratos" na Pasta "Acompanhamento e Planejamento da Obra"`;
-        }
+        var pastaContratosObra = await buscaDocumentosDaPasta(idPastaContratosObras);
 
-        var pastasContratos = await buscaDocumentosDaPasta(pastasContratosFound.documentId)
-        var pastasContratoObraFound = pastasContratos.find(e => e.documentDescription == "Contratos Obras");
-        if (!pastasContratoObraFound) {
-            throw `Não foi possível encontrar a Pasta "Contratos Obras" na Pasta "Contratos"`; 
-        }
-
-        var pastaContratosObra = await buscaDocumentosDaPasta(pastasContratoObraFound.documentId);
         var pastaDoContratoFound = pastaContratosObra.find(e => verificaSePastaDoContratoIgualCodigoContrato(e.documentDescription, CODIGOCONTRATO));
 
 
         if (pastaDoContratoFound) {
             //Se pasta com o Código do Contrato encontrada, retorna o ID da pasta
-            return pastaDoContratoFound.id;
+            return pastaDoContratoFound.id ? pastaDoContratoFound.id : pastaDoContratoFound.documentId;
         } else {
             // Se pasta não encontrada, cria a pasta
-            var retorno = await promiseCriaPasta(pastasContratoObraFound.documentId, geraNomePasta(CODIGOCONTRATO));
-            return  retorno.documentId;
+            var retorno = await promiseCriaPasta(idPastaContratosObras, geraNomePasta(CODIGOCONTRATO));
+            return retorno.documentId ? retorno.documentId : retorno.id;
         }
 
     } catch (error) {
         console.error(error);
-        throw error;   
+        throw error;
     }
 }
 
@@ -2653,8 +2677,11 @@ function geraNomePasta(CODIGOCONTRATO) {
         nome = "AditivoTransporteMateriais";
     }
     else {
-        console.error("geraNomePasta idContrato invalido");
-        return false;
+        if ($("#tipoContrato").find("option:selected").text()) {
+            nome = $("#tipoContrato").find("option:selected").text()
+        } else {
+            nome = "ModeloTerceiro";
+        }
     }
 
     return CODIGOCONTRATO + " - " + nome + " - " + fornecedor;

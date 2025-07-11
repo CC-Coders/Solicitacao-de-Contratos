@@ -363,13 +363,14 @@ function CriaAssinaturaEletronica() {
                 var IdArquivo = doc.getDocumentId();
                 var versaoArquivo = doc.getVersion();
                 var NomeArquivo = doc.getDocumentDescription();
+                var idPasta = doc.getParentDocumentId();
                 var CodRemetente = hAPI.getCardValue("solicitante");
 
                 var ds = DatasetFactory.getDataset("ds_auxiliar_wesign", null, [
                     DatasetFactory.createConstraint("nmArquivo", NomeArquivo, NomeArquivo, ConstraintType.MUST),
                     DatasetFactory.createConstraint("codArquivo", IdArquivo, IdArquivo, ConstraintType.MUST),
                     DatasetFactory.createConstraint("vrArquivo", versaoArquivo, versaoArquivo, ConstraintType.MUST),
-                    DatasetFactory.createConstraint("codPasta", "140518", "140518", ConstraintType.MUST),
+                    DatasetFactory.createConstraint("codPasta", idPasta, idPasta, ConstraintType.MUST),
                     DatasetFactory.createConstraint("codRemetente", CodRemetente, CodRemetente, ConstraintType.MUST),
                     DatasetFactory.createConstraint("nmRemetente", BuscaNomeUsuario(CodRemetente), BuscaNomeUsuario(CodRemetente), ConstraintType.MUST),
                     DatasetFactory.createConstraint("status", "Enviando para assinatura", "Enviando para assinatura", ConstraintType.MUST),

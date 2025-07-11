@@ -29,10 +29,10 @@
     <processDefinitionVersionPK>
       <companyId>1</companyId>
       <processId>Solicitacão de Contratos NOVO</processId>
-      <version>18</version>
+      <version>50</version>
     </processDefinitionVersionPK>
     <versionDescription>Nova Versão.</versionDescription>
-    <formId>34543</formId>
+    <formId>1183157</formId>
     <editionMode>true</editionMode>
     <updateAttachmentsVersion>true</updateAttachmentsVersion>
     <controlsAttachmentsSecurity>true</controlsAttachmentsSecurity>
@@ -1190,7 +1190,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>11</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1204,7 +1204,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>11</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1216,7 +1216,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>11</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1228,7 +1228,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>4</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>11</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1240,7 +1240,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>12</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1252,7 +1252,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>12</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1264,7 +1264,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>16</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1278,7 +1278,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>16</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1291,7 +1291,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1303,7 +1303,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1316,7 +1316,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1330,7 +1330,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>4</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1343,7 +1343,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>5</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1356,7 +1356,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>28</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1369,7 +1369,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>28</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1381,7 +1381,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>28</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1394,7 +1394,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>31</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1407,7 +1407,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>31</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1420,7 +1420,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1432,7 +1432,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1446,7 +1446,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1460,7 +1460,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>116</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1472,7 +1472,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>116</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1484,7 +1484,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>116</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1496,7 +1496,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>4</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>116</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1508,7 +1508,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>138</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1520,7 +1520,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>50</version>
         <sequence>138</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -2745,13 +2745,14 @@ function CriaAssinaturaEletronica() {&#xd;
                 var IdArquivo = doc.getDocumentId();&#xd;
                 var versaoArquivo = doc.getVersion();&#xd;
                 var NomeArquivo = doc.getDocumentDescription();&#xd;
+                var idPasta = doc.getParentDocumentId();&#xd;
                 var CodRemetente = hAPI.getCardValue(&quot;solicitante&quot;);&#xd;
 &#xd;
                 var ds = DatasetFactory.getDataset(&quot;ds_auxiliar_wesign&quot;, null, [&#xd;
                     DatasetFactory.createConstraint(&quot;nmArquivo&quot;, NomeArquivo, NomeArquivo, ConstraintType.MUST),&#xd;
                     DatasetFactory.createConstraint(&quot;codArquivo&quot;, IdArquivo, IdArquivo, ConstraintType.MUST),&#xd;
                     DatasetFactory.createConstraint(&quot;vrArquivo&quot;, versaoArquivo, versaoArquivo, ConstraintType.MUST),&#xd;
-                    DatasetFactory.createConstraint(&quot;codPasta&quot;, &quot;140518&quot;, &quot;140518&quot;, ConstraintType.MUST),&#xd;
+                    DatasetFactory.createConstraint(&quot;codPasta&quot;, idPasta, idPasta, ConstraintType.MUST),&#xd;
                     DatasetFactory.createConstraint(&quot;codRemetente&quot;, CodRemetente, CodRemetente, ConstraintType.MUST),&#xd;
                     DatasetFactory.createConstraint(&quot;nmRemetente&quot;, BuscaNomeUsuario(CodRemetente), BuscaNomeUsuario(CodRemetente), ConstraintType.MUST),&#xd;
                     DatasetFactory.createConstraint(&quot;status&quot;, &quot;Enviando para assinatura&quot;, &quot;Enviando para assinatura&quot;, ConstraintType.MUST),&#xd;
@@ -3558,7 +3559,7 @@ function BuscaNomeUsuario(CodUsuario) {&#xd;
     var atividade = getValue(&quot;WKNumState&quot;);&#xd;
     var contOk = hAPI.getCardValue(&quot;decisaoCont&quot;);&#xd;
 &#xd;
-    if (atividade == 21) {&#xd;
+    if (atividade == 23) {&#xd;
         if (contOk == 1) {&#xd;
             if (hAPI.getCardValue(&quot;radioOptAssinatura&quot;) == &quot;Eletronica&quot;) {&#xd;
                 return ExecutaIntegracaoAssinaturaEletronicaWeSign();&#xd;
@@ -3602,17 +3603,25 @@ function ExecutaIntegracaoAssinaturaEletronicaWeSign(){&#xd;
 
         if (documentId != &quot;&quot; &amp;&amp; documentId != 0) {
             var statusAssinaturaContrato = verificaSeContratoAprovado(documentId);
+            hAPI.setTaskComments(getValue(&apos;WKUser&apos;), getValue(&apos;WKNumProces&apos;), &quot;0&quot;, &quot;Assinatura com Status (&quot; + statusAssinaturaContrato + &quot;)&quot;);
             if (statusAssinaturaContrato == &quot;Pendente Assinatura&quot;) {
                 return retornaParaLooping;
             }
             else if(statusAssinaturaContrato == &quot;Assinado&quot;){
                 hAPI.setCardValue(&quot;statusAssinaturaEletronica&quot;, statusAssinaturaContrato);
 
-                var coligada = hAPI.getCardValue(&quot;codColigada&quot;);
+                var coligada = hAPI.getCardValue(&quot;hiddenCodColigada&quot;);
                 var IDCNT = hAPI.getCardValue(&quot;idCntRm&quot;);
-                var CODSTACNT_ATIVO = &quot;01&quot;;
-                AtualizaStatusContrato(coligada, IDCNT, CODSTACNT_ATIVO);
-
+                var tpcont = hAPI.getCardValue(&quot;tpCont&quot;);
+                var tipoRescisao = 3;
+                if (tpcont == tipoRescisao) {
+                    var CODSTACNT_RESCISAO = &quot;03&quot;;
+                    AtualizaStatusContrato(coligada, IDCNT, CODSTACNT_RESCISAO);
+                }else{
+                    var CODSTACNT_ATIVO = &quot;01&quot;;
+                    AtualizaStatusContrato(coligada, IDCNT, CODSTACNT_ATIVO);
+                }
+                
                 return enviaParaProximaAtividade;
             }else{
                 hAPI.setCardValue(&quot;statusAssinaturaEletronica&quot;, statusAssinaturaContrato);
@@ -3620,10 +3629,13 @@ function ExecutaIntegracaoAssinaturaEletronicaWeSign(){&#xd;
             }
         }
     } catch (error) {
-        log.info(&quot;Erro ao verificar assinatura eletronica nos Contratos intermediateconditional136:&quot;);
-        log.dir(error);
+        log.info(&quot;Erro ao verificar assinatura eletronica nos Contratos intermediateconditional136: &quot; + (error &amp;&amp; error.message ? error.message : String(error)));
+        hAPI.setTaskComments(getValue(&apos;WKUser&apos;), getValue(&apos;WKNumProces&apos;), &quot;0&quot;, &quot;Erro ao verificar assinatura eletronica nos Contratos intermediateconditional136: &quot; + (error &amp;&amp; error.message ? error.message : String(error)));
+        if (error &amp;&amp; error.stack) {
+            log.info(&quot;Stack: &quot; + String(error.stack));
+        }
         hAPI.setCardValue(&quot;statusAssinaturaEletronica&quot;, &quot;ERRO&quot;);
-        return enviaParaProximaAtividade;
+        return retornaParaLooping;
     }
 }
 
@@ -3633,6 +3645,48 @@ function verificaSeContratoAprovado(documentId){
     ],null);
         
     return ds.getValue(0,&quot;statusAssinatura&quot;);
+}
+
+function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
+    try {
+        if (!CODCOLIGADA || CODCOLIGADA == null || CODCOLIGADA == &quot;&quot;) {
+            throw &quot;Necessário informar CODCOLIGA&quot;;
+        }
+        if (!IDCNT || IDCNT == null || IDCNT == &quot;&quot;) {
+            throw &quot;Necessário informar IDCNT&quot;;
+        }
+        if (!CODSTACNT || CODSTACNT == null || CODSTACNT == &quot;&quot;) {
+            throw &quot;Necessário informar CODSTACNT&quot;;
+        }
+
+        var xml =
+            &quot;&lt;CtrCnt&gt;\
+            &lt;TCnt&gt;\
+                &lt;CODCOLIGADA&gt;&quot; + CODCOLIGADA + &quot;&lt;/CODCOLIGADA&gt;\
+                &lt;IDCNT&gt;&quot; + IDCNT + &quot;&lt;/IDCNT&gt;\
+                &lt;CODSTACNT&gt;&quot; + CODSTACNT + &quot;&lt;/CODSTACNT&gt;\
+            &lt;/TCnt&gt;\
+        &lt;/CtrCnt&gt;&quot;;
+        var contexto = &quot;CODSISTEMA=G;CODCOLIGADA=&quot; + CODCOLIGADA + &quot;;CODUSUARIO=fluig&quot;;
+
+        var retorno = DatasetFactory.getDataset(&quot;InsereContratoRM&quot;, null, [
+            DatasetFactory.createConstraint(&quot;xml&quot;, xml, xml, ConstraintType.MUST),
+            DatasetFactory.createConstraint(&quot;contexto&quot;, contexto, contexto, ConstraintType.MUST),
+            DatasetFactory.createConstraint(&quot;idContrato&quot;, IDCNT, IDCNT, ConstraintType.MUST),
+            DatasetFactory.createConstraint(&quot;coligada&quot;, CODCOLIGADA, CODCOLIGADA, ConstraintType.MUST),
+        ], null);
+        if (!retorno || retorno == &quot;&quot; || retorno == null) {
+            throw &quot;Houve um erro na comunicação com o webservice. Tente novamente!&quot;;
+        } else {
+            if (retorno.values[0][0] == &quot;false&quot;) {
+                throw &quot;Erro ao gerar contrato. Favor entrar em contato com o administrador do sistema. Mensagem: &quot; + retorno.values[0][1];
+            } else if (retorno.values[0][0] == &quot;true&quot;) {
+                hAPI.setCardValue(&quot;idCntRm&quot;, retorno.values[0][2]);
+            }
+        }
+    } catch (error) {
+        throw error;
+    }
 }</eventDescription>
     </WorkflowProcessEvent>
   </list>
@@ -3742,7 +3796,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>46</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3753,7 +3807,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>46</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3764,7 +3818,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>46</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3775,7 +3829,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>46</linkSequence>
         <bendSequence>4</bendSequence>
       </processLinkBendPK>
@@ -3786,7 +3840,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>56</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3797,7 +3851,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>63</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3808,7 +3862,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>63</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3819,7 +3873,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>81</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3830,7 +3884,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>81</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3841,7 +3895,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>82</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3852,7 +3906,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>84</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3863,7 +3917,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>104</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3874,7 +3928,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>106</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3885,7 +3939,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>109</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3896,7 +3950,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>114</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3907,7 +3961,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>114</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3918,7 +3972,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>115</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3929,7 +3983,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>120</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3940,7 +3994,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>120</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3951,7 +4005,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>127</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3962,7 +4016,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>127</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3973,7 +4027,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>128</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3984,7 +4038,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>128</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3995,7 +4049,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>129</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4006,7 +4060,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>129</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4017,7 +4071,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>130</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4028,7 +4082,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>130</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4039,7 +4093,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>132</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4050,7 +4104,7 @@ function verificaSeContratoAprovado(documentId){
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <linkSequence>132</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4063,15 +4117,15 @@ function verificaSeContratoAprovado(documentId){
       <processStateTriggerPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>18</version>
+        <version>50</version>
         <stateSequence>136</stateSequence>
         <triggerSequence>0</triggerSequence>
       </processStateTriggerPK>
-      <runType>2</runType>
+      <runType>1</runType>
       <type>3</type>
       <value>Solicitação De Contrato De Equipamentos Teste.intermediateconditional136.js</value>
-      <timeTrigger>8:0:0</timeTrigger>
-      <frequencia>01</frequencia>
+      <timeTrigger>0:0:0</timeTrigger>
+      <frequencia>06</frequencia>
     </ProcessStateTrigger>
   </list>
   <list/>
