@@ -2549,18 +2549,31 @@ async function buscaOuCriaPastaDoContrato() {
 
         if (CODCCUSTO == "1.1.001") {
             if (CODCOLIGADA == 1) {
-                idPastaContratosObras = 1344311;
-                
-            }else if(CODCOLIGADA == 12){
+                idPastaContratosObras = 1344311;   
+            }
+            else if(CODCOLIGADA == 12){
                 idPastaContratosObras = 1344334;
             }
             else{
                 throw "Pasta da Matriz não encontrada para a Coligada: " + CODCOLIGADA;
             }
         }
+        else if(CODCOLIGADA == 2 && CODCCUSTO == '1.3.001'){
+            idPastaContratosObras = 1682952;
+        }
         else if (CODCCUSTO == "1.1.008") {
             idPastaContratosObras = 51167;
-        } else {
+        }
+        else if((CODCOLIGADA == 1 && CODCCUSTO == "1.1.011") || (CODCOLIGADA == 2 && CODCCUSTO == "1.1.001")){
+            idPastaContratosObras = 171608;
+        }
+        else if(CODCOLIGADA == 1 && CODCCUSTO == '1.1.016'){
+            idPastaContratosObras = 1761636;
+        }
+        else if(CODCOLIGADA == "6"){
+            idPastaContratosObras = 269433;
+        }
+        else {
             var ds = DatasetFactory.getDataset("SincronizaPastasDasObras", null, [
                 DatasetFactory.createConstraint("CODCOLIGADA", CODCOLIGADA, CODCOLIGADA, ConstraintType.MUST),
                 DatasetFactory.createConstraint("CODCCUSTO", CODCCUSTO, CODCCUSTO, ConstraintType.MUST)

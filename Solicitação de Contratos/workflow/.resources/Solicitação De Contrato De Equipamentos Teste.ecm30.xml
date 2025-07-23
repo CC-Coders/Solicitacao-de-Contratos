@@ -29,7 +29,7 @@
     <processDefinitionVersionPK>
       <companyId>1</companyId>
       <processId>Solicitacão de Contratos NOVO</processId>
-      <version>50</version>
+      <version>51</version>
     </processDefinitionVersionPK>
     <versionDescription>Nova Versão.</versionDescription>
     <formId>1183157</formId>
@@ -1190,7 +1190,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>11</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1204,7 +1204,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>11</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1216,7 +1216,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>11</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1228,7 +1228,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>4</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>11</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1240,7 +1240,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>12</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1252,7 +1252,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>12</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1264,7 +1264,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>16</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1278,7 +1278,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>16</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1291,7 +1291,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1303,7 +1303,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1316,7 +1316,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1330,7 +1330,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>4</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1343,7 +1343,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>5</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>20</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1356,7 +1356,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>28</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1369,7 +1369,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>28</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1381,7 +1381,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>28</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1394,7 +1394,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>31</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1407,7 +1407,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>31</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1420,7 +1420,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1432,7 +1432,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1446,7 +1446,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1460,7 +1460,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>116</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1472,7 +1472,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>116</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1484,7 +1484,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>3</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>116</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1496,7 +1496,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>4</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>116</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1508,7 +1508,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>1</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>138</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -1520,7 +1520,7 @@
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
         <expressionOrder>2</expressionOrder>
-        <version>50</version>
+        <version>51</version>
         <sequence>138</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -2461,7 +2461,8 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {&#xd;
                 }&#xd;
                 AnexaDocumentosInicio();&#xd;
                 hAPI.setCardValue(&quot;preenchidoBodyEquipamentos&quot;, true);&#xd;
-            } else if (atv == 79) {&#xd;
+            } &#xd;
+            else if (atv == 79) {&#xd;
                 //Atividade adm obra&#xd;
                 //Anexa o arquivo inserido no type=file #myFile&#xd;
                 AnexarDocumento(hAPI.getCardValue(&quot;idDocContrato&quot;));&#xd;
@@ -2490,7 +2491,8 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {&#xd;
                 }&#xd;
                 var prazo = dia + &quot;/&quot; + mes + &quot;/&quot; + ano;&#xd;
                 hAPI.setCardValue(&quot;dataExpira&quot;, prazo);&#xd;
-            } else if (atv == ATIVIDADES.CONTROLADORIA) {&#xd;
+            } &#xd;
+            else if (atv == ATIVIDADES.CONTROLADORIA) {&#xd;
                 //Atividade Controladoria&#xd;
                 if (contOk == 1) {&#xd;
                     AnexarDocumento(hAPI.getCardValue(&quot;idDocContrato&quot;)); //Anexa na solicitação o contrato gerado ou o arquivo inserido&#xd;
@@ -2511,7 +2513,24 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {&#xd;
                         atualizaStatusEquipParaEmVigencia();&#xd;
                     }&#xd;
                 }&#xd;
-            } else if (atv == ATIVIDADES.COORD_OBRAS) {&#xd;
+            } &#xd;
+            else if (atv == ATIVIDADES.ENGENHEIRO) {&#xd;
+                if (hAPI.getCardValue(&quot;coordenador&quot;) != &quot;&quot;) {&#xd;
+                    if (contOk == 1 &amp;&amp; hAPI.getCardValue(&quot;atividadeParalela&quot;) != true &amp;&amp; hAPI.getCardValue(&quot;atividadeParalela&quot;) != &quot;true&quot;) {&#xd;
+                        if (hAPI.getCardValue(&quot;radioOptAssinatura&quot;) == &quot;Eletronica&quot;) {&#xd;
+                            log.info(&quot;radioOptAssinatura ==&gt; &quot; + hAPI.getCardValue(&quot;radioOptAssinatura&quot;));&#xd;
+                            CriaAssinaturaEletronica();&#xd;
+                        }&#xd;
+                    }&#xd;
+                    if (contOk == 1 &amp;&amp; (hAPI.getCardValue(&quot;atividadeParalela&quot;) == true || hAPI.getCardValue(&quot;atividadeParalela&quot;) == &quot;true&quot;) &amp;&amp; hAPI.getCardValue(&quot;codigoColigada&quot;) == &quot;12&quot;) {&#xd;
+                        if (hAPI.getCardValue(&quot;radioOptAssinatura&quot;) == &quot;Eletronica&quot;) {&#xd;
+                            log.info(&quot;radioOptAssinatura ==&gt; &quot; + hAPI.getCardValue(&quot;radioOptAssinatura&quot;));&#xd;
+                            CriaAssinaturaEletronica();&#xd;
+                        }&#xd;
+                    }&#xd;
+                }&#xd;
+            } &#xd;
+            else if (atv == ATIVIDADES.COORD_OBRAS) {&#xd;
                 log.info(&quot;contOk ==&gt; &quot; + contOk);&#xd;
                 if (contOk == 1 &amp;&amp; hAPI.getCardValue(&quot;atividadeParalela&quot;) != true &amp;&amp; hAPI.getCardValue(&quot;atividadeParalela&quot;) != &quot;true&quot;) {&#xd;
                     log.info(&quot;ifOk ==&gt; &quot; + contOk);&#xd;
@@ -2527,7 +2546,8 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {&#xd;
                         CriaAssinaturaEletronica();&#xd;
                     }&#xd;
                 }&#xd;
-            } else if (atv == ATIVIDADES.ASSINATURA_ELETRONICA || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {&#xd;
+            } &#xd;
+            else if (atv == ATIVIDADES.ASSINATURA_ELETRONICA || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {&#xd;
                 if (contOk == 1 || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {&#xd;
                     atualizaStatusEquipParaEmVigencia();&#xd;
                 }&#xd;
@@ -2538,7 +2558,8 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {&#xd;
                     var CODSTACNT_ATIVO = &quot;01&quot;;&#xd;
                     AtualizaStatusContrato(coligada, IDCNT, CODSTACNT_ATIVO);&#xd;
                 }&#xd;
-            } else if (atv == ATIVIDADES.DIRETORIA) {&#xd;
+            } &#xd;
+            else if (atv == ATIVIDADES.DIRETORIA) {&#xd;
                 log.info(&quot;contOkDiretoria ==&gt; &quot; + contOk)&#xd;
                 if (contOk == 1) {&#xd;
                     log.info(&quot;radioOptAssinatura ==&gt; &quot; + hAPI.getCardValue(&quot;radioOptAssinatura&quot;))&#xd;
@@ -3796,7 +3817,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>46</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3807,7 +3828,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>46</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3818,7 +3839,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>46</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3829,7 +3850,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>46</linkSequence>
         <bendSequence>4</bendSequence>
       </processLinkBendPK>
@@ -3840,7 +3861,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>56</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3851,7 +3872,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>63</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3862,7 +3883,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>63</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3873,7 +3894,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>81</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3884,7 +3905,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>81</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3895,7 +3916,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>82</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3906,7 +3927,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>84</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3917,7 +3938,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>104</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3928,7 +3949,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>106</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3939,7 +3960,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>109</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3950,7 +3971,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>114</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3961,7 +3982,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>114</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3972,7 +3993,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>115</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3983,7 +4004,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>120</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3994,7 +4015,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>120</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4005,7 +4026,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>127</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4016,7 +4037,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>127</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4027,7 +4048,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>128</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4038,7 +4059,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>128</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4049,7 +4070,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>129</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4060,7 +4081,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>129</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4071,7 +4092,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>130</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4082,7 +4103,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>130</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4093,7 +4114,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>132</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4104,7 +4125,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <linkSequence>132</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -4117,7 +4138,7 @@ function AtualizaStatusContrato(CODCOLIGADA, IDCNT, CODSTACNT) {
       <processStateTriggerPK>
         <companyId>1</companyId>
         <processId>Solicitação De Contrato De Equipamentos Teste</processId>
-        <version>50</version>
+        <version>51</version>
         <stateSequence>136</stateSequence>
         <triggerSequence>0</triggerSequence>
       </processStateTriggerPK>
