@@ -79,7 +79,8 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                 }
                 AnexaDocumentosInicio();
                 hAPI.setCardValue("preenchidoBodyEquipamentos", true);
-            } else if (atv == 79) {
+            } 
+            else if (atv == 79) {
                 //Atividade adm obra
                 //Anexa o arquivo inserido no type=file #myFile
                 AnexarDocumento(hAPI.getCardValue("idDocContrato"));
@@ -108,7 +109,8 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                 }
                 var prazo = dia + "/" + mes + "/" + ano;
                 hAPI.setCardValue("dataExpira", prazo);
-            } else if (atv == ATIVIDADES.CONTROLADORIA) {
+            } 
+            else if (atv == ATIVIDADES.CONTROLADORIA) {
                 //Atividade Controladoria
                 if (contOk == 1) {
                     AnexarDocumento(hAPI.getCardValue("idDocContrato")); //Anexa na solicitação o contrato gerado ou o arquivo inserido
@@ -129,7 +131,24 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                         atualizaStatusEquipParaEmVigencia();
                     }
                 }
-            } else if (atv == ATIVIDADES.COORD_OBRAS) {
+            } 
+            else if (atv == ATIVIDADES.ENGENHEIRO) {
+                if (hAPI.getCardValue("coordenador") != "") {
+                    if (contOk == 1 && hAPI.getCardValue("atividadeParalela") != true && hAPI.getCardValue("atividadeParalela") != "true") {
+                        if (hAPI.getCardValue("radioOptAssinatura") == "Eletronica") {
+                            log.info("radioOptAssinatura ==> " + hAPI.getCardValue("radioOptAssinatura"));
+                            CriaAssinaturaEletronica();
+                        }
+                    }
+                    if (contOk == 1 && (hAPI.getCardValue("atividadeParalela") == true || hAPI.getCardValue("atividadeParalela") == "true") && hAPI.getCardValue("codigoColigada") == "12") {
+                        if (hAPI.getCardValue("radioOptAssinatura") == "Eletronica") {
+                            log.info("radioOptAssinatura ==> " + hAPI.getCardValue("radioOptAssinatura"));
+                            CriaAssinaturaEletronica();
+                        }
+                    }
+                }
+            } 
+            else if (atv == ATIVIDADES.COORD_OBRAS) {
                 log.info("contOk ==> " + contOk);
                 if (contOk == 1 && hAPI.getCardValue("atividadeParalela") != true && hAPI.getCardValue("atividadeParalela") != "true") {
                     log.info("ifOk ==> " + contOk);
@@ -145,7 +164,8 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                         CriaAssinaturaEletronica();
                     }
                 }
-            } else if (atv == ATIVIDADES.ASSINATURA_ELETRONICA || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {
+            } 
+            else if (atv == ATIVIDADES.ASSINATURA_ELETRONICA || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {
                 if (contOk == 1 || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) {
                     atualizaStatusEquipParaEmVigencia();
                 }
@@ -156,7 +176,8 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                     var CODSTACNT_ATIVO = "01";
                     AtualizaStatusContrato(coligada, IDCNT, CODSTACNT_ATIVO);
                 }
-            } else if (atv == ATIVIDADES.DIRETORIA) {
+            } 
+            else if (atv == ATIVIDADES.DIRETORIA) {
                 log.info("contOkDiretoria ==> " + contOk)
                 if (contOk == 1) {
                     log.info("radioOptAssinatura ==> " + hAPI.getCardValue("radioOptAssinatura"))
