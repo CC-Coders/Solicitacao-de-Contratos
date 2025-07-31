@@ -174,6 +174,9 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                 }
                 if ((contOk == 1 || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) && tpcont != tipoRescisao) {
                     var CODSTACNT_ATIVO = "01";
+                    if (coligada == "" || coligada == null || coligada == undefined) {
+                        coligada = hAPI.getCardValue("hiddenCodColigada");
+                    }
                     AtualizaStatusContrato(coligada, IDCNT, CODSTACNT_ATIVO);
                 }
             } 
