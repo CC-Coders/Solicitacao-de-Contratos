@@ -2570,6 +2570,9 @@ async function buscaOuCriaPastaDoContrato() {
         else if(CODCOLIGADA == 1 && CODCCUSTO == '1.1.016'){
             idPastaContratosObras = 1761636;
         }
+        else if(CODCOLIGADA == "5"){
+            idPastaContratosObras = 322216;
+        }
         else if(CODCOLIGADA == "6"){
             idPastaContratosObras = 269433;
         }
