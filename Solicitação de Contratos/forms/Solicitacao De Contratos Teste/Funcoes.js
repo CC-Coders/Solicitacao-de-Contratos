@@ -1987,6 +1987,46 @@ function baixarModelo() {
         beforeSend: function () { },
     });
 
+        html = "";
+    $.ajax({
+        method: "GET",
+        url: "http://fluig.castilho.com.br:1010/api/public/ecm/document/listDocument/1803094",
+        contentType: "application/json",
+        async: false,
+        success: (retorno => {
+            html +=
+                "<div class='panel panel-default'>\
+            <div class='panel-heading'>\
+                <h1 class='panel-title'>Dromos</h1>\
+            </div>\
+            <div class='panel-body'>\
+            <div class='row'>";
+            for (var i = 0; i < retorno.content.length; i++) {
+                if (i % 3 == 0 && i != 0) {
+                    html += "</div><br><div class='row'>";
+                }
+
+                html += "<div class='col-md-4'>\
+                    <button class='btn btn-primary btn-block'>" + retorno.content[i].description + "</button>\
+                    <a class='hide' target='_blank' href='" + retorno.content[i].fileURL + "' download='" + retorno.content[i].fileURL + "'></a>\
+                </div>";
+            }
+
+            html += "</div>\
+            </div>";
+
+            $("#divDownloadModelos").append(html);
+        }),
+        error: function (x, e) {
+            console.error("Atualizar Descrição");
+            console.log(x);
+            console.log(e);
+            if (x.status == 500) {
+                alert("Busca regionais das obras: Erro Interno do Servidor: entre em contato com o Administrador.");
+            }
+        },
+        beforeSend: function () { },
+    });
 
 
     $("#divDownloadModelos")

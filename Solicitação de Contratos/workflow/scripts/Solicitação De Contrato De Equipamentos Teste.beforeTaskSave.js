@@ -133,7 +133,7 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                 }
             } 
             else if (atv == ATIVIDADES.ENGENHEIRO) {
-                if (hAPI.getCardValue("coordenador") != "") {
+                if (hAPI.getCardValue("coordenador") == "") {
                     if (contOk == 1 && hAPI.getCardValue("atividadeParalela") != true && hAPI.getCardValue("atividadeParalela") != "true") {
                         if (hAPI.getCardValue("radioOptAssinatura") == "Eletronica") {
                             log.info("radioOptAssinatura ==> " + hAPI.getCardValue("radioOptAssinatura"));
