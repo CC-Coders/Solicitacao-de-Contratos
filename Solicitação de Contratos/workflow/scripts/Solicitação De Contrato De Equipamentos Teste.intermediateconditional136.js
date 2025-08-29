@@ -15,6 +15,9 @@ function intermediateconditional136() {
 
                 var coligada = hAPI.getCardValue("hiddenCodColigada");
                 var IDCNT = hAPI.getCardValue("idCntRm");
+                if (!IDCNT || IDCNT == null || IDCNT == "") {
+                    return enviaParaProximaAtividade;
+                }
                 var tpcont = hAPI.getCardValue("tpCont");
                 var tipoRescisao = 3;
                 if (tpcont == tipoRescisao) {
