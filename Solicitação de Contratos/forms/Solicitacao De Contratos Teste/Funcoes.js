@@ -2652,6 +2652,9 @@ async function buscaOuCriaPastaDoContrato() {
             else if(CODCOLIGADA == 12){
                 idPastaContratosObras = 1344334;
             }
+            else if(CODCOLIGADA == 13){
+                idPastaContratosObras = 1834475;
+            }
             else{
                 throw "Pasta da Matriz não encontrada para a Coligada: " + CODCOLIGADA;
             }
