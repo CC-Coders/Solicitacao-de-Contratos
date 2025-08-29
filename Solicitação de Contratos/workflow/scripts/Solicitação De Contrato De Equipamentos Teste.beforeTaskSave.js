@@ -133,7 +133,7 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                 }
             } 
             else if (atv == ATIVIDADES.ENGENHEIRO) {
-                if (hAPI.getCardValue("coordenador") != "") {
+                if (hAPI.getCardValue("coordenador") == "") {
                     if (contOk == 1 && hAPI.getCardValue("atividadeParalela") != true && hAPI.getCardValue("atividadeParalela") != "true") {
                         if (hAPI.getCardValue("radioOptAssinatura") == "Eletronica") {
                             log.info("radioOptAssinatura ==> " + hAPI.getCardValue("radioOptAssinatura"));
@@ -174,6 +174,9 @@ function beforeTaskSave(colleagueId, nextSequenceId, userList) {
                 }
                 if ((contOk == 1 || atv == ATIVIDADES.CONTROLADORIA_RECOLHE_ASSINATURA) && tpcont != tipoRescisao) {
                     var CODSTACNT_ATIVO = "01";
+                    if (coligada == "" || coligada == null || coligada == undefined) {
+                        coligada = hAPI.getCardValue("hiddenCodColigada");
+                    }
                     AtualizaStatusContrato(coligada, IDCNT, CODSTACNT_ATIVO);
                 }
             } 

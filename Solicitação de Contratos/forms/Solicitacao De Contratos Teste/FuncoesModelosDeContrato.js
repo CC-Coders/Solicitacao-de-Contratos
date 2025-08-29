@@ -261,6 +261,10 @@ function ValidaCampos() {
             }
             else if($("#idContrato").val() == 19 && (!$("#checkboxOptRemoverEqp").is(":checked") && $("#tabelaRemove").has($(this)).length > 0)){
 
+            }else if(($("#idContrato").val() == 2 || $("#idContrato").val() == 3) && ($(this).attr("id") =="valorCaucao" || $(this).attr("id") =="dataPagamentoCaucao"|| $(this).attr("id") =="MesPagamentoCaucao"|| $(this).attr("id") =="AnoPagamentoCaucao" ) && $("#selectOptLocImovelCaucao").val() == "Nao"){
+                // Nos modelos de Locação de Imóvel
+                // Se for selecionado caução como Nao
+                // Ignora os campos de Caução na Validação
             }
             else{
                 console.log("this==>", $(this).attr("id"))

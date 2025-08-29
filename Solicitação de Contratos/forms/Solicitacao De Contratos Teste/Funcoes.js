@@ -1659,6 +1659,22 @@ function atribuicaoEngCoord() {
     var coord = null;
     var eng = null;
 
+    if ($("#hiddenCodColigada").val() == 1 && $("#hiddenObra").val() == "Obra VLI Manutenção") {
+        // 
+        do {
+            var resposta = prompt("Selecione o Engenheiro (1 - andre.andrade) (2 - welber.andrade)");            
+        } while(resposta != 1 && resposta != 2);
+
+        if (resposta == 1) {
+            $("#engenheiro").val("andre.andrade");
+        }
+        else if(resposta == 2){
+            $("#engenheiro").val("welber.andrade");
+        }
+        $("#coordenador").val("marcos.ferraz");
+        return;
+    }
+
     if ($("#hiddenCodColigada").val() == 1 && $("#hiddenObra").val() == 'Matriz Curitiba') {
         $("#engenheiro").val(1);
         $("#coordenador").val("padilha");
@@ -1987,6 +2003,88 @@ function baixarModelo() {
         beforeSend: function () { },
     });
 
+    html = "";
+    $.ajax({
+        method: "GET",
+        url: "http://fluig.castilho.com.br:1010/api/public/ecm/document/listDocument/1803094",
+        contentType: "application/json",
+        async: false,
+        success: (retorno => {
+            html +=
+                "<div class='panel panel-default'>\
+            <div class='panel-heading'>\
+                <h1 class='panel-title'>Dromos</h1>\
+            </div>\
+            <div class='panel-body'>\
+            <div class='row'>";
+            for (var i = 0; i < retorno.content.length; i++) {
+                if (i % 3 == 0 && i != 0) {
+                    html += "</div><br><div class='row'>";
+                }
+
+                html += "<div class='col-md-4'>\
+                    <button class='btn btn-primary btn-block'>" + retorno.content[i].description + "</button>\
+                    <a class='hide' target='_blank' href='" + retorno.content[i].fileURL + "' download='" + retorno.content[i].fileURL + "'></a>\
+                </div>";
+            }
+
+            html += "</div>\
+            </div>";
+
+            $("#divDownloadModelos").append(html);
+        }),
+        error: function (x, e) {
+            console.error("Atualizar Descrição");
+            console.log(x);
+            console.log(e);
+            if (x.status == 500) {
+                alert("Busca regionais das obras: Erro Interno do Servidor: entre em contato com o Administrador.");
+            }
+        },
+        beforeSend: function () { },
+    });
+
+
+    html = "";
+    $.ajax({
+        method: "GET",
+        url: "http://fluig.castilho.com.br:1010/api/public/ecm/document/listDocument/1818084",
+        contentType: "application/json",
+        async: false,
+        success: (retorno => {
+            html +=
+                "<div class='panel panel-default'>\
+            <div class='panel-heading'>\
+                <h1 class='panel-title'>Epya</h1>\
+            </div>\
+            <div class='panel-body'>\
+            <div class='row'>";
+            for (var i = 0; i < retorno.content.length; i++) {
+                if (i % 3 == 0 && i != 0) {
+                    html += "</div><br><div class='row'>";
+                }
+
+                html += "<div class='col-md-4'>\
+                    <button class='btn btn-primary btn-block'>" + retorno.content[i].description + "</button>\
+                    <a class='hide' target='_blank' href='" + retorno.content[i].fileURL + "' download='" + retorno.content[i].fileURL + "'></a>\
+                </div>";
+            }
+
+            html += "</div>\
+            </div>";
+
+            $("#divDownloadModelos").append(html);
+        }),
+        error: function (x, e) {
+            console.error("Atualizar Descrição");
+            console.log(x);
+            console.log(e);
+            if (x.status == 500) {
+                alert("Busca regionais das obras: Erro Interno do Servidor: entre em contato com o Administrador.");
+            }
+        },
+        beforeSend: function () { },
+    });
 
 
     $("#divDownloadModelos")
@@ -2554,6 +2652,9 @@ async function buscaOuCriaPastaDoContrato() {
             else if(CODCOLIGADA == 12){
                 idPastaContratosObras = 1344334;
             }
+            else if(CODCOLIGADA == 13){
+                idPastaContratosObras = 1834475;
+            }
             else{
                 throw "Pasta da Matriz não encontrada para a Coligada: " + CODCOLIGADA;
             }
@@ -2569,6 +2670,9 @@ async function buscaOuCriaPastaDoContrato() {
         }
         else if(CODCOLIGADA == 1 && CODCCUSTO == '1.1.016'){
             idPastaContratosObras = 1761636;
+        }
+        else if(CODCOLIGADA == "5"){
+            idPastaContratosObras = 322216;
         }
         else if(CODCOLIGADA == "6"){
             idPastaContratosObras = 269433;

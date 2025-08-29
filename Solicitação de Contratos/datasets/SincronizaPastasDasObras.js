@@ -3,8 +3,7 @@ function defineStructure(){
     addColumn("CODCCUSTO");
     addColumn("NOME");
     addColumn("DOCUMENTID");
-    setKey([ "CODCCUSTO"]);
-    addIndex([ "CODCCUSTO" ]);
+    setKey([ "CODCOLIGADA","CODCCUSTO"]);
 }
 
 function onSync(lastSyncDate){
@@ -92,7 +91,19 @@ function consultasPastasDasObras(){
     query += "	N2.TP_DOCUMENTO = 1  ";
     query += "	AND N2.NR_DOCUMENTO_PAI = 1682944 ";
     query += "	AND N2.VERSAO_ATIVA = 1 ";
-    query += "ORDER BY CODCOLIGADA ";
+    query += "UNION ";
+    query += "SELECT ";
+    query += "	CASE ";
+    query += "		WHEN N2.NR_DOCUMENTO_PAI = 1755193 THEN 13 ";
+    query += "	END AS CODCOLIGADA,  ";
+    query += "	N2.DS_PRINCIPAL_DOCUMENTO,  ";
+    query += "	N2.NR_DOCUMENTO  ";
+    query += "FROM DOCUMENTO N2  ";
+    query += "WHERE   ";
+    query += "	N2.TP_DOCUMENTO = 1   ";
+    query += "	AND N2.NR_DOCUMENTO_PAI = 1755193  ";
+    query += "	AND N2.VERSAO_ATIVA = 1  ";
+    query += "ORDER BY CODCOLIGADA, DS_PRINCIPAL_DOCUMENTO  ";
 
     return executaQuery(query);
 }
