@@ -1522,22 +1522,7 @@ function BuscaDadosContrato() {
             return obj.coligada == coligada;
         });
 
-        if ($("#idContrato").val() == 7 || $("#idContrato").val() == 9 || $("#idContrato").val() == 10) {
-            $("#divClausulaColigada").html(retorno.nome + " inscrita no CNPJ do MF sob nº " + retorno.CNPJ);
-        }
-        else if($("#idContrato").val() == 6 || $("#idContrato").val() == 8 || $("#idContrato").val() == 25){
-            $("#divClausulaColigada").html(
-                "<span style='display: contents'>\
-                    <b>" + retorno.nome + "</b>\
-                </span>\
-                <br>\
-                <div style='width: 50px; display: inline-block'></div>\
-                    CNPJ:\
-                    <span style='display: contents'>\
-                        " + retorno.CNPJ + "\
-                    </span>\
-                </div>");
-        }
+        $("#divClausulaColigada").html(retorno.clausula);
 
 
         $("#logo").html(retorno.logo);
