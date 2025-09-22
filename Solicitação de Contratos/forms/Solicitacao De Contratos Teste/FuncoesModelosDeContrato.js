@@ -1556,7 +1556,11 @@ function BuscaDadosContrato() {
         representante = "Barbieri";
     } else if (coligada == "12") {
         representante = "Mario";
-    } else {
+    } 
+    else if (coligada == "13") {
+        representante = "Mario";
+    } 
+    else {
         if ($("#idContrato").val() == 3 || $("#idContrato").val() == 2) {//Contratos Loc. Imovel
             representante = "Padilha";
         } else {
