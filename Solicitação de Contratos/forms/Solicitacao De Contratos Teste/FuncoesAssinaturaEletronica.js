@@ -488,17 +488,23 @@ function BuscaListaAssinantes(ListarRepresentantesDaCastilho = false) {
                 DatasetFactory.createConstraint("nome", "Marcio Rinaldo Guinossi", "Marcio Rinaldo Guinossi", ConstraintType.MUST_NOT));
         }
 
-        DatasetFactory.getDataset("ds_wesign_assinantes", null, constraints, null, {
+        DatasetFactory.getDataset("dsCadastroAssinantesWesign", [], constraints, null, {
             success: (ds) => {
-                var assinantes = [];
-                for (const assinante of ds.values) {
-                    assinantes.push({
-                        Nome: assinante.nome,
-                        Email: hex2a(assinante.email),
-                        Cpf: hex2a(assinante.cpf)
-                    });
+                if (ds.values[0].STATUS != "SUCCESS") {
+                    console.error(ds);
                 }
-                resolve(assinantes);
+                else{
+                    var assinantes = [];
+                    var result = JSON.parse(ds.values[0].RESULT);
+                    for (const assinante of result) {
+                        assinantes.push({
+                            Nome: assinante.NOME,
+                            Email: hex2a(assinante.email),
+                            Cpf: hex2a(assinante.cpf)
+                        });
+                    }
+                    resolve(assinantes);
+                }
             }
         });
     });
